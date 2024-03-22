@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-char lastCommand[] = input;
+char lastCommand[];
 char message[];
 char input[];
 
@@ -19,8 +19,8 @@ void printBoard(){
 }
 
 void mainMenu(){
-    printf("\nLAST Command: %c", lastCommand);
-    printf("\nMessage: %c", message);
+    printf("\nLAST Command: %c", *lastCommand);
+    printf("\nMessage: %c", *message);
     printf("\nINPUT > ");
     scanf("%c", input);
 
@@ -28,4 +28,5 @@ void mainMenu(){
 
 void run(){
     printBoard();
+    mainMenu();
 }
