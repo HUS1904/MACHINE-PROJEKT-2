@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <ctype.h>
+#include <strings.h>
 
 char lastCommand[];
 char message[];
@@ -22,8 +24,24 @@ void mainMenu(){
     printf("\nLAST Command: %c", *lastCommand);
     printf("\nMessage: %c", *message);
     printf("\nINPUT > ");
-    scanf("%c", input);
+    scanf("%2s", &input);
 
+    if (strcmp(input, "LD") == 0) {
+        printf("LD command\n");
+    } else if (strcmp(input, "SW") == 0) {
+        printf("SW command\n");
+    } else if (strcmp(input, "SL") == 0) {
+        printf("SL command\n");
+    } else if (strcmp(input, "SR") == 0) {
+        printf("SR command\n");
+    } else if (strcmp(input, "SD") == 0) {
+        printf("SD command\n");
+    } else if (strcmp(input, "QQ") == 0) {
+        printf("QQ command - Quitting\n");
+    } else {
+        printf("Unknown command\n");
+    }
+    strcpy(lastCommand, input);
 }
 
 void run(){
