@@ -52,10 +52,10 @@ RM = "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2"
+CMAKE_SOURCE_DIR = C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug"
+CMAKE_BINARY_DIR = C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/MACHINE_PROJEKT_2.dir/depend.make
@@ -69,32 +69,48 @@ include CMakeFiles/MACHINE_PROJEKT_2.dir/progress.make
 include CMakeFiles/MACHINE_PROJEKT_2.dir/flags.make
 
 CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj: CMakeFiles/MACHINE_PROJEKT_2.dir/flags.make
-CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj: C:/Users/Hussein\ Jarrah/Desktop/MACHINE-PROJEKT-2/Yukon/Main.c
+CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj: C:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/Yukon/Main.c
 CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj: CMakeFiles/MACHINE_PROJEKT_2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj -MF CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Main.c.obj.d -o CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Main.c.obj -c "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\Yukon\Main.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj -MF CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Main.c.obj.d -o CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Main.c.obj -c C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\Yukon\Main.c
 
 CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\Yukon\Main.c" > CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Main.c.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\Yukon\Main.c > CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Main.c.i
 
 CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\Yukon\Main.c" -o CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Main.c.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\Yukon\Main.c -o CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Main.c.s
+
+CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj: CMakeFiles/MACHINE_PROJEKT_2.dir/flags.make
+CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj: C:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/Yukon/Card.c
+CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj: CMakeFiles/MACHINE_PROJEKT_2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj -MF CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Card.c.obj.d -o CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Card.c.obj -c C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\Yukon\Card.c
+
+CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\Yukon\Card.c > CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Card.c.i
+
+CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\Yukon\Card.c -o CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Card.c.s
 
 # Object files for target MACHINE_PROJEKT_2
 MACHINE_PROJEKT_2_OBJECTS = \
-"CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj"
+"CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj" \
+"CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj"
 
 # External object files for target MACHINE_PROJEKT_2
 MACHINE_PROJEKT_2_EXTERNAL_OBJECTS =
 
 MACHINE_PROJEKT_2.exe: CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj
+MACHINE_PROJEKT_2.exe: CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj
 MACHINE_PROJEKT_2.exe: CMakeFiles/MACHINE_PROJEKT_2.dir/build.make
 MACHINE_PROJEKT_2.exe: CMakeFiles/MACHINE_PROJEKT_2.dir/linkLibs.rsp
 MACHINE_PROJEKT_2.exe: CMakeFiles/MACHINE_PROJEKT_2.dir/objects1.rsp
 MACHINE_PROJEKT_2.exe: CMakeFiles/MACHINE_PROJEKT_2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable MACHINE_PROJEKT_2.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable MACHINE_PROJEKT_2.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\MACHINE_PROJEKT_2.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -106,6 +122,6 @@ CMakeFiles/MACHINE_PROJEKT_2.dir/clean:
 .PHONY : CMakeFiles/MACHINE_PROJEKT_2.dir/clean
 
 CMakeFiles/MACHINE_PROJEKT_2.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2" "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2" "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug" "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug" "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles\MACHINE_PROJEKT_2.dir\DependInfo.cmake" "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2 C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2 C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles\MACHINE_PROJEKT_2.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/MACHINE_PROJEKT_2.dir/depend
 

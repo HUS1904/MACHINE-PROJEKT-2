@@ -1,5 +1,5 @@
 CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj: \
- C:\Users\Hussein\ Jarrah\Desktop\MACHINE-PROJEKT-2\Yukon\Main.c \
+ C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\Yukon\Main.c \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/corecrt.h \

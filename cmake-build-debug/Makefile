@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2"
+CMAKE_SOURCE_DIR = C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug"
+CMAKE_BINARY_DIR = C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles" "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug\\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Hussein Jarrah\Desktop\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,6 +128,30 @@ MACHINE_PROJEKT_2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MACHINE_PROJEKT_2.dir\build.make CMakeFiles/MACHINE_PROJEKT_2.dir/build
 .PHONY : MACHINE_PROJEKT_2/fast
 
+Yukon/Card.obj: Yukon/Card.c.obj
+.PHONY : Yukon/Card.obj
+
+# target to build an object file
+Yukon/Card.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MACHINE_PROJEKT_2.dir\build.make CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj
+.PHONY : Yukon/Card.c.obj
+
+Yukon/Card.i: Yukon/Card.c.i
+.PHONY : Yukon/Card.i
+
+# target to preprocess a source file
+Yukon/Card.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MACHINE_PROJEKT_2.dir\build.make CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.i
+.PHONY : Yukon/Card.c.i
+
+Yukon/Card.s: Yukon/Card.c.s
+.PHONY : Yukon/Card.s
+
+# target to generate assembly for a file
+Yukon/Card.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MACHINE_PROJEKT_2.dir\build.make CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.s
+.PHONY : Yukon/Card.c.s
+
 Yukon/Main.obj: Yukon/Main.c.obj
 .PHONY : Yukon/Main.obj
 
@@ -161,6 +185,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... MACHINE_PROJEKT_2
+	@echo ... Yukon/Card.obj
+	@echo ... Yukon/Card.i
+	@echo ... Yukon/Card.s
 	@echo ... Yukon/Main.obj
 	@echo ... Yukon/Main.i
 	@echo ... Yukon/Main.s

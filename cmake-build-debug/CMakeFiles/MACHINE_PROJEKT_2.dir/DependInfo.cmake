@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/Hussein Jarrah/Desktop/MACHINE-PROJEKT-2/Yukon/Main.c" "CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj" "gcc" "CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj.d"
+  "C:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/Yukon/Card.c" "CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj" "gcc" "CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj.d"
+  "C:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/Yukon/Main.c" "CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj" "gcc" "CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
