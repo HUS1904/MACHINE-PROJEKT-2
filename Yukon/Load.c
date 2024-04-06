@@ -15,7 +15,7 @@ const char* load(const char* filename, Card** list) {
 
     if(first->precedence == 0) {
         static char error[100];
-        // This can be changed if somebody wants the errors to look different, but we are required to provide the filename
+        // This can be changed if somebody wants the errors to look different, but we are required to provide the line
         sprintf(error, "Error: broken card %s at line %d.", first->name, line);
         fclose(file);
         return error;
