@@ -5,4 +5,9 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(MACHINE_PROJEKT_2
         Yukon/Main.c
-        Yukon/Card.c)
+        Yukon/Card.c
+        Yukon/Card.h
+        Yukon/Load.c
+        Yukon/Load.h
+        Yukon/Board.c
+        Yukon/Board.h)

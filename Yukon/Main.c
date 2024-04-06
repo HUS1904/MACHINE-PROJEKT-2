@@ -1,33 +1,110 @@
 #include <stdio.h>
-#include <ctype.h>
 #include <strings.h>
+#include "Load.h"
+#include "Card.h"
+#include "Board.h"
 
-char lastCommand[];
-char message[];
-char input[];
+char lastCommand[100];
+char message[100];
+char input[100];
+
+Card* columns[7];
+Card* deck;
 
 void run();
 void printBoard();
-void mainMenu();
+const char* mainMenu();
 
 int main(){
     run();
 }
 
 void printBoard(){
-    printf("C1\tC2\tC3\tC4\tC5\tC6\tC7\t\n");
-
+    printf("C1\tC2\tC3\tC4\tC5\tC6\tC7\n\n");
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t\t[]\tF1\n",
+           maybe(get(columns[0], 0)),
+           maybe(get(columns[1], 0)),
+           maybe(get(columns[2], 0)),
+           maybe(get(columns[3], 0)),
+           maybe(get(columns[4], 0)),
+           maybe(get(columns[5], 0)),
+           maybe(get(columns[6], 0))
+           );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+            maybe(get(columns[0], 1)),
+            maybe(get(columns[1], 1)),
+            maybe(get(columns[2], 1)),
+            maybe(get(columns[3], 1)),
+            maybe(get(columns[4], 1)),
+            maybe(get(columns[5], 1)),
+            maybe(get(columns[6], 1))
+    );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t\t[]\tF2\n",
+           maybe(get(columns[0], 2)),
+           maybe(get(columns[1], 2)),
+           maybe(get(columns[2], 2)),
+           maybe(get(columns[3], 2)),
+           maybe(get(columns[4], 2)),
+           maybe(get(columns[5], 2)),
+           maybe(get(columns[6], 2))
+    );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+           maybe(get(columns[0], 3)),
+           maybe(get(columns[1], 3)),
+           maybe(get(columns[2], 3)),
+           maybe(get(columns[3], 3)),
+           maybe(get(columns[4], 3)),
+           maybe(get(columns[5], 3)),
+           maybe(get(columns[6], 3))
+    );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t\t[]\tF3\n",
+           maybe(get(columns[0], 4)),
+           maybe(get(columns[1], 4)),
+           maybe(get(columns[2], 4)),
+           maybe(get(columns[3], 4)),
+           maybe(get(columns[4], 4)),
+           maybe(get(columns[5], 4)),
+           maybe(get(columns[6], 4))
+    );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+           maybe(get(columns[0], 5)),
+           maybe(get(columns[1], 5)),
+           maybe(get(columns[2], 5)),
+           maybe(get(columns[3], 5)),
+           maybe(get(columns[4], 5)),
+           maybe(get(columns[5], 5)),
+           maybe(get(columns[6], 5))
+    );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t\t[]\tF4\n",
+           maybe(get(columns[0], 6)),
+           maybe(get(columns[1], 6)),
+           maybe(get(columns[2], 6)),
+           maybe(get(columns[3], 6)),
+           maybe(get(columns[4], 6)),
+           maybe(get(columns[5], 6)),
+           maybe(get(columns[6], 6))
+    );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+           maybe(get(columns[0], 7)),
+           maybe(get(columns[1], 7)),
+           maybe(get(columns[2], 7)),
+           maybe(get(columns[3], 7)),
+           maybe(get(columns[4], 7)),
+           maybe(get(columns[5], 7)),
+           maybe(get(columns[6], 7))
+    );
     //More to be implemented.
 }
 
-void mainMenu(){
-    printf("\nLAST Command: %c", *lastCommand);
-    printf("\nMessage: %c", *message);
+const char* mainMenu(){
+    printf("\nLAST Command: %s", lastCommand);
+    printf("\nMessage: %s", message);
     printf("\nINPUT > ");
-    scanf("%2s", &input);
+    scanf("%2s", input);
 
     if (strcmp(input, "LD") == 0) {
-        printf("LD command\n");
+        strcpy(message, load("default.txt", &deck));
+        arrangeEvenly(columns, deck);
     } else if (strcmp(input, "SW") == 0) {
         printf("SW command\n");
     } else if (strcmp(input, "SL") == 0) {
@@ -42,9 +119,13 @@ void mainMenu(){
         printf("Unknown command\n");
     }
     strcpy(lastCommand, input);
+    return input;
 }
 
 void run(){
-    printBoard();
-    mainMenu();
+    char command[2];
+    while (strcmp(command, "QQ") != 0) {
+        printBoard();
+        strcpy(command, mainMenu());
+    }
 }
