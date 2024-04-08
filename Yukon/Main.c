@@ -3,6 +3,7 @@
 #include "Load.h"
 #include "Card.h"
 #include "Board.h"
+#include "SaveDeck.c"
 
 char lastCommand[100];
 char message[100];
