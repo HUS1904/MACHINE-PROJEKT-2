@@ -112,16 +112,13 @@ const char* mainMenu(){
     sscanf(input, "%s %s", command, filename);
 
     if (strcmp(command, "LD") == 0) {
-        if(loaded) {
-            resetColumns(columns);
-        } else {
-            loaded = true;
-        }
+        resetColumns(columns);
 
         strcmp(filename, "") == 0
             ? strcpy(message, load("default.txt", &deck))
             : strcpy(message, load(filename, &deck));
-        arrangeEvenly(columns, deck);
+        if(strcmp(message, "OK") == 0)
+            arrangeEvenly(columns, deck);
     } else if (strcmp(input, "SW") == 0) {
         printf("SW command\n");
     } else if (strcmp(input, "SL") == 0) {

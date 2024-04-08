@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <unistd.h>
 #include "Load.h"
 #include "Card.h"
 
 const char* load(const char* filename, Card** list) {
-    FILE* file = fopen(filename, "r"); // Open the file to be read
-    if (!file) {
-        if (errno == ENOENT) {
-            return "Error: file does not exist";
-        } else {
-            return "Error: file could not be opened";
-        }
+    if(!(access(filename, F_OK) == 0)) {
+        return "Error: file does not exist";
     }
+    printf("Loading file %s\n", filename);
+    FILE* file = fopen(filename, "r"); // Open the file to be read
+    printf("Opened file\n");
     char name[3]; // Char[] to be used for creating new cards
     int line = 1; // The current line of the file, to be used for error messages
 
