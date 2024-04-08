@@ -20,15 +20,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="LD mostly done, user cannot specify files tho">
+    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="LD done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yukon/Board.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Board.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yukon/Board.h" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Board.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yukon/Load.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Load.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yukon/Main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/MACHINE_PROJEKT_2.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/MACHINE_PROJEKT_2.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
@@ -130,7 +127,7 @@
       <workItem from="1712404794079" duration="15000" />
       <workItem from="1712404818737" duration="5000" />
       <workItem from="1712404834789" duration="8917000" />
-      <workItem from="1712413822389" duration="10702000" />
+      <workItem from="1712413822389" duration="12433000" />
     </task>
     <task id="LOCAL-00001" summary="LD mostly done, user cannot specify files tho">
       <option name="closed" value="true" />
@@ -140,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712436383583</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="LD done">
+      <option name="closed" value="true" />
+      <created>1712561824241</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712561824241</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +169,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="LD mostly done, user cannot specify files tho" />
-    <option name="LAST_COMMIT_MESSAGE" value="LD mostly done, user cannot specify files tho" />
+    <MESSAGE value="LD done" />
+    <option name="LAST_COMMIT_MESSAGE" value="LD done" />
   </component>
 </project>
