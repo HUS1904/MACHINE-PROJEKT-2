@@ -5,7 +5,7 @@
 
 const char* load(const char* filename, Card** list) {
     FILE* file = fopen(filename, "r"); // Open the file to be read
-    if (file == NULL) return "Error: file could not be opened\0";
+    if (!file) return "Error: file could not be opened\0";
     char name[3]; // Char[] to be used for creating new cards
     int line = 1; // The current line of the file, to be used for error messages
 
