@@ -1,11 +1,10 @@
 #include <stdio.h>
-#include <string.h>
 #include "Card.h"
-#include "malloc.h"
+
 const char* filename1;
 const char* connectToFile(const char* filename) {
     filename1 = filename;
-    FILE*  file = fopen(filename, "w"); // Open the file for reading
+    FILE*  file = fopen(filename, "w"); // Open the file for writing
     if (file == NULL) {
         return "Error: Unable to open file";
     } else {
@@ -23,23 +22,15 @@ void saveE(Card* deck) {
     }
 
         for(int i = 0; i<52;i++) {
-            Card *current = get(deck,i);
             // Get the card pointer
-
+            Card *current = get(deck,i);
 
             // Check if the card pointer is not NULL
 
+
             // Write the card name to the file
-
-            printf("Adding %s\n", get(deck, i)->name);
             fprintf(file1, "%s\n", current->name);
-
-
         }
-
-
-
-
 
     fclose(file1); // Close the file
 }
