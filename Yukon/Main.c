@@ -3,6 +3,7 @@
 #include "Load.h"
 #include "Card.h"
 #include "Board.h"
+#include "Shuffle.h"
 
 char lastCommand[100];
 char message[100];
@@ -123,8 +124,10 @@ const char* mainMenu(){
         printf("SW command\n");
     } else if (strcmp(input, "SL") == 0) {
         printf("SL command\n");
-    } else if (strcmp(input, "SR") == 0) {
-        printf("SR command\n");
+    } else if (strcmp(command, "SR") == 0) {
+        resetColumns(columns);
+        shuffle(&deck);
+        arrangeEvenly(columns, deck);
     } else if (strcmp(input, "SD") == 0) {
         printf("SD command\n");
     } else if (strcmp(input, "QQ") == 0) {
