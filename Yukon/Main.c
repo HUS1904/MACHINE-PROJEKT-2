@@ -106,6 +106,8 @@ void printBoard(){
 }
 
 const char* mainMenu(){
+    strcpy(command, "");
+    strcpy(filename, "");
     printf("\nLAST Command: %s", lastCommand);
     printf("\nMessage: %s", message);
     printf("\nINPUT > ");
@@ -126,14 +128,14 @@ const char* mainMenu(){
         printf("SL command\n");
     } else if (strcmp(input, "SR") == 0) {
         printf("SR command\n");
-    } else if (strcmp(input, "SD") == 0) {
+    } else if (strcmp(command, "SD") == 0) {
         strcmp(filename, "") == 0
         ? strcpy(message, connectToFile("cards.txt"))
         : strcpy(message, connectToFile(filename));
         if(strcmp(message,"OK") == 0){
             saveE(deck);
         }
-    } else if (strcmp(input, "QQ") == 0) {
+    } else if (strcmp(command, "QQ") == 0) {
         printf("QQ command - Quitting\n");
     } else {
         printf("Unknown command\n");

@@ -31,6 +31,7 @@ void saveE(Card* deck) {
 
             // Write the card name to the file
 
+            printf("Adding %s\n", get(deck, i)->name);
             fprintf(file1, "%s\n", current->name);
 
 
