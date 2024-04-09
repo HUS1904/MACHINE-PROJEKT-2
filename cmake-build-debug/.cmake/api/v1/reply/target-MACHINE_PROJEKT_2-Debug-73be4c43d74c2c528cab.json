@@ -106,7 +106,8 @@
 			[
 				2,
 				4,
-				6
+				6,
+				8
 			]
 		}
 	],
@@ -156,6 +157,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "Yukon/SaveDeck.c",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Yukon/SaveDeck.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

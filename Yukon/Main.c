@@ -3,7 +3,7 @@
 #include "Load.h"
 #include "Card.h"
 #include "Board.h"
-#include "SaveDeck.c"
+#include "SaveDeck.h"
 
 char lastCommand[100];
 char message[100];
@@ -127,7 +127,12 @@ const char* mainMenu(){
     } else if (strcmp(input, "SR") == 0) {
         printf("SR command\n");
     } else if (strcmp(input, "SD") == 0) {
-        printf("SD command\n");
+        strcmp(filename, "") == 0
+        ? strcpy(message, connectToFile("cards.txt"))
+        : strcpy(message, connectToFile(filename));
+        if(strcmp(message,"OK") == 0){
+            saveE(deck);
+        }
     } else if (strcmp(input, "QQ") == 0) {
         printf("QQ command - Quitting\n");
     } else {

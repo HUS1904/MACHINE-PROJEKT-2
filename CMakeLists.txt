@@ -12,4 +12,5 @@ add_executable(MACHINE_PROJEKT_2
         Yukon/Board.c
         Yukon/Board.h
         Yukon/SaveDeck.c
+        Yukon/SaveDeck.h
 )
