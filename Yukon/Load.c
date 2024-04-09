@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "Load.h"
 #include "Card.h"
+#include "Main.h"
 
 const char* load(const char* filename, Card** list) {
     if(!(access(filename, F_OK) == 0)) {
@@ -46,6 +47,7 @@ const char* load(const char* filename, Card** list) {
     }
 
     fclose(file);
+    loaded = true;
     return "OK\0";
 }
 

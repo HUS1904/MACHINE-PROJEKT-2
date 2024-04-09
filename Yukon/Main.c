@@ -3,6 +3,7 @@
 #include "Load.h"
 #include "Card.h"
 #include "Board.h"
+#include "Unhide.h"
 
 char lastCommand[100];
 char message[100];
@@ -101,7 +102,6 @@ void printBoard(){
            maybe(get(columns[5], 7)),
            maybe(get(columns[6], 7))
     );
-    //More to be implemented.
 }
 
 const char* mainMenu(){
@@ -120,7 +120,7 @@ const char* mainMenu(){
         if(strcmp(message, "OK") == 0)
             arrangeEvenly(columns, deck);
     } else if (strcmp(input, "SW") == 0) {
-        printf("SW command\n");
+        strcpy(message, unhide(&deck));
     } else if (strcmp(input, "SL") == 0) {
         printf("SL command\n");
     } else if (strcmp(input, "SR") == 0) {
