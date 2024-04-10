@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "Load.h"
 #include "Card.h"
+#include "Main.h"
 
 const char* load(const char* filename, Card** list) {
     if(!(access(filename, F_OK) == 0)) {
@@ -46,6 +47,7 @@ const char* load(const char* filename, Card** list) {
     }
 
     fclose(file);
+    loaded = true;
     return "OK\0";
 }
 
@@ -55,6 +57,24 @@ void arrangeEvenly(Card* columns[7], Card* deck) {
 
         Card* current = malloc(sizeof(Card));
         *current = buildCard(get(deck,i)->name);
+
+        // If the first element of a column is null set it to the current card
+        // otherwise get the last element of that column and set its next to be the current card
+        if (columns[j] == NULL) {
+            columns[j] = current;
+        } else {
+            linkCards(last(columns[j]), current);
+        }
+    }
+}
+
+void arrangeVisible(Card* columns[7], Card* deck) {
+    for (int i = 0, j = 0; i < 52; i++, j++) {
+        j = j >= 7 ? 0 : j; // Resets j if it gets too large
+
+        Card* current = malloc(sizeof(Card));
+        *current = buildCard(get(deck,i)->name);
+        current->hidden = false;
 
         // If the first element of a column is null set it to the current card
         // otherwise get the last element of that column and set its next to be the current card
