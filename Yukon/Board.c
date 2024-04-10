@@ -7,7 +7,7 @@ const char* maybe(Card* x) {
     return x == NULL
         ? "  "
         : x->hidden
-            ? x->name
+            ? "[]"
             : x->name;
 }
 

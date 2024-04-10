@@ -58,7 +58,7 @@ Card buildCard(const char name[3]) {
     newCard.precedence = precedence;
     if(newCard.suit != 'C' && newCard.suit != 'D' && newCard.suit != 'H' && newCard.suit != 'S')
         newCard.precedence = 0;
-    newCard.hidden = false;
+    newCard.hidden = true;
     newCard.next = NULL;
     newCard.previous = NULL;
     return newCard;
