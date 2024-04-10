@@ -78,10 +78,14 @@ void linkCards(Card *previous, Card *next) {
 }
 
 void insert(Card *previous, Card *next, Card *inserted) {
-    previous->next = inserted;
+    if(previous != NULL)
+        previous->next = inserted;
+
     inserted->previous = previous;
     inserted->next = next;
-    next->previous = inserted;
+
+    if(next != NULL)
+        next->previous = inserted;
 }
 
 void removeCard(Card *removed) {

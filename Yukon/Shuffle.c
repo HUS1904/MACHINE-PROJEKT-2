@@ -22,8 +22,10 @@ const char* shuffle(Card** deck) {
         removeCard(extracted);
     } while (deckLength > 2);
 
-    linkCards(previous, *deck);
-    *deck = first(previous);
+    Card* root = first(previous);
+    Card* position = get(root, rand() % length(root));
+    insert(position, position->next, *deck);
+    *deck = root;
 
     return "OK";
 }
