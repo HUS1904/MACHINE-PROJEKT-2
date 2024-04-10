@@ -89,3 +89,9 @@ Card* get(Card *from, int n) {
     }
     return card;
 }
+
+void split(Card* card) {
+    linkCards(last(card), first(card));
+    card->next->previous = NULL;
+    card->next = NULL;
+}
