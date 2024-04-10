@@ -10,4 +10,6 @@ add_executable(MACHINE_PROJEKT_2
         Yukon/Load.c
         Yukon/Load.h
         Yukon/Board.c
-        Yukon/Board.h)
+        Yukon/Board.h
+        Yukon/Split.c
+        Yukon/Split.h)
