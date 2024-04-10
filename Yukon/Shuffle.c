@@ -9,8 +9,9 @@ const char* shuffle(Card** deck) {
         deckLength = length(first(*deck));
 
         int r = (rand() % (deckLength - 1)) + 1;
+        Card* extracted = get(*deck, r);
         Card* current = malloc(sizeof(Card));
-        *current = buildCard(get(*deck, r)->name);
+        *current = buildCard(extracted->name);
 
         if (!current->precedence) {
             break;
@@ -18,7 +19,7 @@ const char* shuffle(Card** deck) {
 
         linkCards(previous, current);
         previous = current;
-        removeCard(get(*deck, r));
+        removeCard(extracted);
     } while (deckLength > 2);
 
     linkCards(previous, *deck);
