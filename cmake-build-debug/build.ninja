@@ -81,6 +81,14 @@ build CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Board.c.obj: C_COMPILER__MACHINE_PR
   TARGET_COMPILE_PDB = CMakeFiles\MACHINE_PROJEKT_2.dir\
   TARGET_PDB = MACHINE_PROJEKT_2.pdb
 
+build CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Split.c.obj: C_COMPILER__MACHINE_PROJEKT_2_unscanned_Debug C$:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/Yukon/Split.c || cmake_object_order_depends_target_MACHINE_PROJEKT_2
+  DEP_FILE = CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon\Split.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\MACHINE_PROJEKT_2.dir
+  OBJECT_FILE_DIR = CMakeFiles\MACHINE_PROJEKT_2.dir\Yukon
+  TARGET_COMPILE_PDB = CMakeFiles\MACHINE_PROJEKT_2.dir\
+  TARGET_PDB = MACHINE_PROJEKT_2.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target MACHINE_PROJEKT_2
@@ -89,7 +97,7 @@ build CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Board.c.obj: C_COMPILER__MACHINE_PR
 #############################################
 # Link the executable MACHINE_PROJEKT_2.exe
 
-build MACHINE_PROJEKT_2.exe: C_EXECUTABLE_LINKER__MACHINE_PROJEKT_2_Debug CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Load.c.obj CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Board.c.obj
+build MACHINE_PROJEKT_2.exe: C_EXECUTABLE_LINKER__MACHINE_PROJEKT_2_Debug CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Main.c.obj CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Card.c.obj CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Load.c.obj CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Board.c.obj CMakeFiles/MACHINE_PROJEKT_2.dir/Yukon/Split.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\MACHINE_PROJEKT_2.dir

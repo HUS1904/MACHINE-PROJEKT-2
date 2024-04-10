@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "Card.h"
 
 Card buildCard(const char name[2]) {
@@ -70,8 +71,17 @@ void linkCards(Card *previous, Card *next) {
 void insert(Card *previous, Card *next, Card *inserted) {
     previous->next = inserted;
     inserted->previous = previous;
+    inserted->next->previous = NULL;
     inserted->next = next;
     next->previous = inserted;
+}
+
+int lengthAcc(Card* first, int n) {
+    return first->next == NULL ? n : lengthAcc(first->next, n + 1);
+}
+
+int length(Card *first) {
+    return first == NULL ? 0 : lengthAcc(first, 1);
 }
 
 Card* first(Card *check) {
@@ -88,10 +98,4 @@ Card* get(Card *from, int n) {
         card = card->next;
     }
     return card;
-}
-
-void split(Card* card) {
-    linkCards(last(card), first(card));
-    card->next->previous = NULL;
-    card->next = NULL;
 }

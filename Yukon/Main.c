@@ -129,19 +129,10 @@ const char* mainMenu(){
     } else if (strcmp(command, "SI") == 0) {
         resetColumns(columns);
         if (deck) { // Ensure deck is loaded before attempting to split
-            int splitIndex = 26; // Default split index
-            char splitIndexStr[100]; // Buffer to hold potential index from input
-
-            if (sscanf(input, "%s %s", command, splitIndexStr) == 2) {
-                // Try to convert the second part of the input to an integer
-                int tempIndex = atoi(splitIndexStr); // Converts string to integer
-                if (tempIndex > 0 && tempIndex < 52) { // Assuming deck size of 52, adjust if necessary
-                    splitIndex = tempIndex; // Use the provided valid index
-                } else {
-                    printf("Invalid index provided. Using default index 26.\n");
-                }
+            int splitIndex = atoi(filename);
+            if(splitIndex >= 52 || splitIndex < 1) {
+                splitIndex = rand() % 50 + 1;
             }
-
             // Now call splitDeck with either the provided or default index
             strcpy(message, splitDeck(&deck, splitIndex));
             arrangeEvenly(columns, deck);

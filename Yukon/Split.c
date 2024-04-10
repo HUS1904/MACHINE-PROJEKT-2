@@ -1,15 +1,17 @@
 #include "Card.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "Split.h"
 
 const char* splitDeck(Card** deck, int splitIndex) {
+    printf("split index %i\n", splitIndex);
     if (splitIndex <= 0 || *deck == NULL) {
         return "Invalid split index or empty deck.";
     }
 
     // Get the card at the split index and the beginning of the second deck
-    Card* splitAt = get(*deck, splitIndex - 1); // Adjust if your indexing is off by one
+    Card* splitAt = get(*deck, splitIndex); // Adjust if your indexing is off by one
     if (splitAt == NULL || splitAt->next == NULL) {
         return "Split index out of bounds.";
     }
@@ -19,33 +21,31 @@ const char* splitDeck(Card** deck, int splitIndex) {
     splitAt->next = NULL; // End the first deck
 
     // Now you have two decks: *deck and secondDeck, let's interleave them
-    interleaveDecks(deck, &secondDeck);
+    if(splitIndex >= 25)
+        interleaveDecks(deck, &secondDeck);
+    else { // Flips which one is the first stack if the index is too small
+        interleaveDecks(&secondDeck, deck);
+        *deck = secondDeck;
+    }
 
     return "OK";
 }
-void interleaveDecks(Card** firstDeck, Card** secondDeck) {
-    Card* currentFirst = *firstDeck;
-    Card* currentSecond = *secondDeck;
-    Card* nextFirst = NULL;
-    Card* nextSecond = NULL;
+void interleaveDecks(Card** deck, Card** secondDeck) {
 
-    while (currentFirst != NULL && currentSecond != NULL) {
-        // Store next cards
-        nextFirst = currentFirst->next;
-        nextSecond = currentSecond->next;
+    Card* firstLast = last(*deck);
+    Card* secondLast = last(*secondDeck);
 
-        // Interleave
-        currentFirst->next = currentSecond;
-        currentSecond->previous = currentFirst;
+    Card* firstFirst = first(firstLast);
+    Card* secondFirst = first(secondLast);
+    printf("First: %s\tSecond: %s\n", firstFirst->name, secondFirst->name);
 
-        if (nextFirst != NULL) { // Prepare for the next iteration
-            nextFirst->previous = currentSecond;
-        }
+    while (firstLast != firstFirst && secondLast != secondFirst) {
+        insert(firstFirst, firstFirst->next, secondFirst);
 
-        currentSecond->next = nextFirst;
-
-        // Move to next cards
-        currentFirst = nextFirst;
-        currentSecond = nextSecond;
+        firstFirst = firstFirst->next->next;
+        secondFirst = first(secondLast);
+        printf("Iteration finished:\nFirst: %s\tSecond: %s\n", firstFirst->name, secondFirst->name);
     }
+
+    linkCards(firstLast, secondLast);
 }

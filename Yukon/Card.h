@@ -31,6 +31,7 @@ Card* last(Card *check);
 // Get the nth card following the one given
 Card* get(Card *from, int n);
 
-void split(Card* card);
+// Get the length of the deck from this card on
+int length(Card *first);
 
 #endif
