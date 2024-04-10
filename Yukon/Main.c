@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <strings.h>
+#include <stdlib.h>
 #include "Load.h"
 #include "Card.h"
 #include "Board.h"
@@ -9,7 +10,7 @@ char message[100];
 char input[100];
 char filename[100];
 char command[100];
-bool loaded;
+
 
 Card* columns[7];
 Card* foundations[4];
@@ -18,6 +19,10 @@ Card* deck;
 void run();
 void printBoard();
 const char* mainMenu();
+const char* splitDeck(Card** deck, int splitIndex);
+void interleaveDecks(Card** firstDeck, Card** secondDeck);
+
+
 
 int main(){
     run();
@@ -121,9 +126,29 @@ const char* mainMenu(){
             arrangeEvenly(columns, deck);
     } else if (strcmp(input, "SW") == 0) {
         printf("SW command\n");
-    } else if (strcmp(input, "SL") == 0) {
-        printf("SL command\n");
-    } else if (strcmp(input, "SR") == 0) {
+    } else if (strcmp(command, "SI") == 0) {
+        resetColumns(columns);
+        if (deck) { // Ensure deck is loaded before attempting to split
+            int splitIndex = 26; // Default split index
+            char splitIndexStr[100]; // Buffer to hold potential index from input
+
+            if (sscanf(input, "%s %s", command, splitIndexStr) == 2) {
+                // Try to convert the second part of the input to an integer
+                int tempIndex = atoi(splitIndexStr); // Converts string to integer
+                if (tempIndex > 0 && tempIndex < 52) { // Assuming deck size of 52, adjust if necessary
+                    splitIndex = tempIndex; // Use the provided valid index
+                } else {
+                    printf("Invalid index provided. Using default index 26.\n");
+                }
+            }
+
+            // Now call splitDeck with either the provided or default index
+            strcpy(message, splitDeck(&deck, splitIndex));
+            // Optionally, directly print the deck to visualize the changes
+        } else {
+            printf("Load a deck first.\n");
+        }
+    }else if (strcmp(input, "SR") == 0) {
         printf("SR command\n");
     } else if (strcmp(input, "SD") == 0) {
         printf("SD command\n");
@@ -136,8 +161,55 @@ const char* mainMenu(){
     return input;
 }
 
+const char* splitDeck(Card** deck, int splitIndex) {
+    if (splitIndex <= 0 || *deck == NULL) {
+        return "Invalid split index or empty deck.";
+    }
+
+    // Get the card at the split index and the beginning of the second deck
+    Card* splitAt = get(*deck, splitIndex - 1); // Adjust if your indexing is off by one
+    if (splitAt == NULL || splitAt->next == NULL) {
+        return "Split index out of bounds.";
+    }
+
+    Card* secondDeck = splitAt->next;
+    splitAt->next->previous = NULL; // Disconnect the second deck from the first
+    splitAt->next = NULL; // End the first deck
+
+    // Now you have two decks: *deck and secondDeck, let's interleave them
+    interleaveDecks(deck, &secondDeck);
+
+    return "OK";
+}
+void interleaveDecks(Card** firstDeck, Card** secondDeck) {
+    Card* currentFirst = *firstDeck;
+    Card* currentSecond = *secondDeck;
+    Card* nextFirst = NULL;
+    Card* nextSecond = NULL;
+
+    while (currentFirst != NULL && currentSecond != NULL) {
+        // Store next cards
+        nextFirst = currentFirst->next;
+        nextSecond = currentSecond->next;
+
+        // Interleave
+        currentFirst->next = currentSecond;
+        currentSecond->previous = currentFirst;
+
+        if (nextFirst != NULL) { // Prepare for the next iteration
+            nextFirst->previous = currentSecond;
+        }
+
+        currentSecond->next = nextFirst;
+
+        // Move to next cards
+        currentFirst = nextFirst;
+        currentSecond = nextSecond;
+    }
+}
+
+
 void run(){
-    loaded = false;
     while (strcmp(command, "QQ") != 0) {
         printBoard();
         strcpy(command, mainMenu());

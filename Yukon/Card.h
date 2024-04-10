@@ -31,4 +31,6 @@ Card* last(Card *check);
 // Get the nth card following the one given
 Card* get(Card *from, int n);
 
+void split(Card* card);
+
 #endif
