@@ -3,7 +3,6 @@
 #include "Load.h"
 #include "Card.h"
 #include "Board.h"
-#include "Unhide.h"
 
 char lastCommand[100];
 char message[100];
@@ -34,7 +33,7 @@ void printBoard(){
            maybe(get(columns[4], 0)),
            maybe(get(columns[5], 0)),
            maybe(get(columns[6], 0)),
-           maybeF(get(foundations[0], 0))
+           maybeF(foundations[0])
            );
     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
             maybe(get(columns[0], 1)),
@@ -53,7 +52,7 @@ void printBoard(){
            maybe(get(columns[4], 2)),
            maybe(get(columns[5], 2)),
            maybe(get(columns[6], 2)),
-           maybeF(get(foundations[1], 0))
+           maybeF(foundations[1])
     );
     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
            maybe(get(columns[0], 3)),
@@ -72,7 +71,7 @@ void printBoard(){
            maybe(get(columns[4], 4)),
            maybe(get(columns[5], 4)),
            maybe(get(columns[6], 4)),
-           maybeF(get(foundations[2], 0))
+           maybeF(foundations[2])
     );
     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
            maybe(get(columns[0], 5)),
@@ -91,7 +90,7 @@ void printBoard(){
            maybe(get(columns[4], 6)),
            maybe(get(columns[5], 6)),
            maybe(get(columns[6], 6)),
-           maybeF(get(foundations[3], 0))
+           maybeF(foundations[3])
     );
     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
            maybe(get(columns[0], 7)),
@@ -120,7 +119,13 @@ const char* mainMenu(){
         if(strcmp(message, "OK") == 0)
             arrangeEvenly(columns, deck);
     } else if (strcmp(input, "SW") == 0) {
-        strcpy(message, unhide(&deck));
+        if(loaded == false){
+            strcpy(message, "Error: no deck is loaded");
+        } else{
+            resetColumns(columns);
+            arrangeVisible(columns, deck);
+            strcpy(message, "OK\0"); 
+        }
     } else if (strcmp(input, "SL") == 0) {
         printf("SL command\n");
     } else if (strcmp(input, "SR") == 0) {

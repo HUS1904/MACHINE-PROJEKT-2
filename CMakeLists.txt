@@ -11,7 +11,5 @@ add_executable(MACHINE_PROJEKT_2
         Yukon/Load.h
         Yukon/Board.c
         Yukon/Board.h
-        Yukon/Unhide.c
-        Yukon/Unhide.h
         Yukon/Main.h
 )

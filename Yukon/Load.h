@@ -8,4 +8,7 @@ const char* load(const char* filename, Card** list);
 // Arrange a deck evenly into the provided column array
 void arrangeEvenly(Card* columns[7], Card* deck);
 
+// Arrange a deck evenly into the provided column array and unhide every card
+void arrangeVisible(Card* columns[7], Card* deck);
+
 #endif //MACHINE_PROJEKT_2_LOAD_H
