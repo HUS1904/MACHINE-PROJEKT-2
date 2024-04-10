@@ -5,22 +5,22 @@ const char* shuffle(Card** deck) {
     int deckLength;
     Card* previous = NULL;
 
-    while (true) {
-        deckLength = length(*deck);
-        if(deckLength < 3)
-            break;
+    do {
+        deckLength = length(first(*deck));
 
-        int r = rand() % deckLength;
+        int r = (rand() % (deckLength - 1)) + 1;
         Card* current = malloc(sizeof(Card));
         *current = buildCard(get(*deck, r)->name);
 
-        if (!current->precedence)
-            continue;
+        if (!current->precedence) {
+            break;
+        }
 
         linkCards(previous, current);
         previous = current;
         removeCard(get(*deck, r));
-    }
+    } while (deckLength > 2);
+
     linkCards(previous, *deck);
     *deck = first(previous);
 

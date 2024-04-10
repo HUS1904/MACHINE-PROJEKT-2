@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "Card.h"
 
-Card buildCard(const char name[2]) {
+Card buildCard(const char name[3]) {
     Card newCard;
     newCard.name[0] = name[0];
     newCard.name[1] = name[1];

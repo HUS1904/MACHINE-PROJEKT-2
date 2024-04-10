@@ -20,8 +20,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="SR kind of working">
+    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="Removed printf from Shuffle.c">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yukon/Card.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Card.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yukon/Shuffle.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Shuffle.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/MACHINE_PROJEKT_2.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/MACHINE_PROJEKT_2.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +135,7 @@
       <workItem from="1712404834789" duration="8917000" />
       <workItem from="1712413822389" duration="13684000" />
       <workItem from="1712642494758" duration="3000" />
-      <workItem from="1712644985079" duration="3043000" />
+      <workItem from="1712644985079" duration="3119000" />
     </task>
     <task id="LOCAL-00001" summary="LD mostly done, user cannot specify files tho">
       <option name="closed" value="true" />
@@ -163,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712648248641</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Removed printf from Shuffle.c">
+      <option name="closed" value="true" />
+      <created>1712648330013</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712648330014</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +203,8 @@
     <MESSAGE value="LD mostly done, user cannot specify files tho" />
     <MESSAGE value="LD done" />
     <MESSAGE value="SR kind of working" />
-    <option name="LAST_COMMIT_MESSAGE" value="SR kind of working" />
+    <MESSAGE value="Removed printf from Shuffle.c" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed printf from Shuffle.c" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
