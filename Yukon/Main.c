@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <strings.h>
+#include <stdlib.h>
 #include "Load.h"
 #include "Card.h"
 #include "Board.h"
@@ -18,6 +19,8 @@ Card* deck;
 void run();
 void printBoard();
 const char* mainMenu();
+const char* playMenu();
+void run();
 
 int main(){
     run();
@@ -103,41 +106,71 @@ void printBoard(){
     );
 }
 
-const char* mainMenu(){
-    printf("\nLAST Command: %s", lastCommand);
-    printf("\nMessage: %s", message);
-    printf("\nINPUT > ");
-    gets(input);
-    sscanf(input, "%s %s", command, filename);
+const char* mainMenu() {
+    bool continueMainMenu = true;
+    while (continueMainMenu && strcmp(command, "QQ") != 0) {
+        printBoard();
+        printf("\nLAST Command: %s", lastCommand);
+        printf("\nMessage: %s", message);
+        printf("\nINPUT > ");
+        fgets(input, sizeof(input), stdin);
+        input[strcspn(input, "\n")] = 0;
+        sscanf(input, "%s %s", command, filename);
 
-    if (strcmp(command, "LD") == 0) {
-        resetColumns(columns);
+        if (strcmp(command, "LD") == 0) {
+            resetColumns(columns);
 
-        strcmp(filename, "") == 0
+            strcmp(filename, "") == 0
             ? strcpy(message, load("default.txt", &deck))
             : strcpy(message, load(filename, &deck));
-        if(strcmp(message, "OK") == 0)
-            arrangeEvenly(columns, deck);
-    } else if (strcmp(input, "SW") == 0) {
-        if(loaded == false){
-            strcpy(message, "Error: no deck is loaded");
-        } else{
-            resetColumns(columns);
-            arrangeVisible(columns, deck);
-            strcpy(message, "OK\0"); 
+            if(strcmp(message, "OK") == 0)
+                arrangeEvenly(columns, deck);
+        } else if (strcmp(command, "SW") == 0) {
+            if (!loaded) {
+                strcpy(message, "Error: no deck is loaded");
+            } else {
+                resetColumns(columns);
+                arrangeVisible(columns, deck);
+                strcpy(message, "OK");
+            }
+        } else if (strcmp(input, "SL") == 0) {
+            printf("SL command\n");
+        } else if (strcmp(input, "SR") == 0) {
+            printf("SR command\n");
+        } else if (strcmp(input, "SD") == 0) {
+            printf("SD command\n");
+        } else if (strcmp(command, "P") == 0) {
+            playMenu();
+            continueMainMenu = false;
+        } else {
+            strcpy(message, "ERROR: Unknown command");
         }
-    } else if (strcmp(input, "SL") == 0) {
-        printf("SL command\n");
-    } else if (strcmp(input, "SR") == 0) {
-        printf("SR command\n");
-    } else if (strcmp(input, "SD") == 0) {
-        printf("SD command\n");
-    } else if (strcmp(input, "QQ") == 0) {
-        printf("QQ command - Quitting\n");
-    } else {
-        printf("Unknown command\n");
+        strcpy(lastCommand, input);
     }
-    strcpy(lastCommand, input);
+    return input;
+}
+
+const char* playMenu() {
+    bool inPlayMenu = true;
+    while (inPlayMenu) {
+        printBoard();
+        printf("\nLAST Command: %s", lastCommand);
+        printf("\nMessage: %s", message);
+        printf("\nINPUT > ");
+        fgets(input, sizeof(input), stdin);
+        input[strcspn(input, "\n")] = 0;  // Remove newline character
+        sscanf(input, "%s %s", command, filename);
+
+        if (strcmp(command, "move") == 0) {
+            strcpy(message, "OK");
+        } else if (strcmp(command, "Q") == 0) {
+            strcpy(message, "OK");
+            inPlayMenu = false;
+        } else {
+            strcpy(message, "ERROR: Unknown command");
+        }
+        strcpy(lastCommand, input);
+    }
     return input;
 }
 
