@@ -85,3 +85,39 @@ void arrangeVisible(Card* columns[7], Card* deck) {
         }
     }
 }
+
+void arrangeP(Card* columns[7], Card* deck) {
+    int maxRows = 11; // Maximum rows determined by the largest value in distribution
+    int distribution[7] = {1, 6, 7, 8, 9, 10, 11}; // Custom distribution for each column
+    int cardIndex = 0;  // Index to track the current card in the deck
+    int cardCount[7] = {0}; // Track the number of cards in each column
+
+    for (int row = 0; row < maxRows && cardIndex < 52; row++) {
+        for (int col = 0; col < 7 && cardIndex < 52; col++) {
+            if (row < distribution[col]) { // Only add a card if the current row is within the distribution limit for that column
+                Card* current = malloc(sizeof(Card));
+                *current = buildCard(get(deck, cardIndex)->name);
+                current->next = NULL;  // Ensure the new card points to NULL
+
+                // Check if the card is among the last 5 in this column
+                if (distribution[col] - cardCount[col] <= 5) {
+                    current->hidden = false; // Set hidden to false for the last 5 cards
+                } else {
+                    current->hidden = true; // Otherwise, the card is hidden
+                }
+
+                // If the first element of a column is null, set it to the current card
+                if (columns[col] == NULL) {
+                    columns[col] = current;
+                } else {
+                    // Otherwise, get the last element of that column and set its next to be the current card
+                    linkCards(last(columns[col]), current);
+                }
+                cardIndex++;  // Move to the next card in the deck
+                cardCount[col]++; // Increment the count of cards in this column
+            }
+        }
+    }
+}
+
+

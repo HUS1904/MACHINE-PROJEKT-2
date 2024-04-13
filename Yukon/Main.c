@@ -10,16 +10,20 @@ char message[100];
 char input[100];
 char filename[100];
 char command[100];
+char from[100];
+char card[100];
+char to[100];
 bool loaded;
 
 Card* columns[7];
 Card* foundations[4];
 Card* deck;
 
-void run();
+
 void printBoard();
 const char* mainMenu();
 const char* playMenu();
+void move(Card* card, Card* col);
 void run();
 
 int main(){
@@ -104,6 +108,33 @@ void printBoard(){
            maybe(get(columns[5], 7)),
            maybe(get(columns[6], 7))
     );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+           maybe(get(columns[0], 8)),
+           maybe(get(columns[1], 8)),
+           maybe(get(columns[2], 8)),
+           maybe(get(columns[3], 8)),
+           maybe(get(columns[4], 8)),
+           maybe(get(columns[5], 8)),
+           maybe(get(columns[6], 8))
+    );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+           maybe(get(columns[0], 9)),
+           maybe(get(columns[1], 9)),
+           maybe(get(columns[2], 9)),
+           maybe(get(columns[3], 9)),
+           maybe(get(columns[4], 9)),
+           maybe(get(columns[5], 9)),
+           maybe(get(columns[6], 9))
+    );
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+           maybe(get(columns[0], 10)),
+           maybe(get(columns[1], 10)),
+           maybe(get(columns[2], 10)),
+           maybe(get(columns[3], 10)),
+           maybe(get(columns[4], 10)),
+           maybe(get(columns[5], 10)),
+           maybe(get(columns[6], 10))
+    );
 }
 
 const char* mainMenu() {
@@ -112,7 +143,7 @@ const char* mainMenu() {
         printBoard();
         printf("\nLAST Command: %s", lastCommand);
         printf("\nMessage: %s", message);
-        printf("\nINPUT > ");
+        printf("\nINPUT >");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = 0;
         sscanf(input, "%s %s", command, filename);
@@ -140,8 +171,11 @@ const char* mainMenu() {
         } else if (strcmp(input, "SD") == 0) {
             printf("SD command\n");
         } else if (strcmp(command, "P") == 0) {
+            resetColumns(columns);
+            arrangeP(columns, deck);
             playMenu();
             continueMainMenu = false;
+            strcpy(message, "OK");
         } else {
             strcpy(message, "ERROR: Unknown command");
         }
@@ -156,17 +190,19 @@ const char* playMenu() {
         printBoard();
         printf("\nLAST Command: %s", lastCommand);
         printf("\nMessage: %s", message);
-        printf("\nINPUT > ");
+        printf("\nINPUT >");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = 0;  // Remove newline character
-        sscanf(input, "%s %s", command, filename);
+        sscanf(input,"%s", card);
 
-        if (strcmp(command, "move") == 0) {
-            strcpy(message, "OK");
-        } else if (strcmp(command, "Q") == 0) {
+        if (strcmp(input, "Q") == 0) {
             strcpy(message, "OK");
             inPlayMenu = false;
-        } else {
+        }else if (strcmp(input, "B") == 0) {
+            //printf("%s\n", get(deck,0)->name);
+            move(get(deck,0), columns[2]);
+            strcpy(message, "OK");
+        }else {
             strcpy(message, "ERROR: Unknown command");
         }
         strcpy(lastCommand, input);
@@ -174,10 +210,20 @@ const char* playMenu() {
     return input;
 }
 
+void move(Card* card1, Card* col){
+    Card* a = card1;
+    Card* b = last(col);
+
+    a->previous->next = NULL;
+    a->previous = b;
+    b->next = a;
+    a->hidden = false;
+}
+
 void run(){
     loaded = false;
     while (strcmp(command, "QQ") != 0) {
-        printBoard();
+        //printBoard();
         strcpy(command, mainMenu());
     }
 }
