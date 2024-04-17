@@ -10,9 +10,7 @@ char message[100];
 char input[100];
 char filename[100];
 char command[100];
-char from[100];
 char card[100];
-char to[100];
 bool loaded;
 
 Card* columns[7];
@@ -23,7 +21,7 @@ Card* deck;
 void printBoard();
 const char* mainMenu();
 const char* playMenu();
-void move(Card* card, Card* col);
+void move(Card* colFrom, Card* colTo,const char cardName[3]);
 void run();
 
 int main(){
@@ -181,12 +179,12 @@ const char* playMenu() {
             inPlayMenu = false;
         }else if (strcmp(input, "B") == 0) {
             //printf("%s\n", get(deck,0)->name);
-            move(columns[1], columns[6]);
+            move(columns[3], columns[5], "8H");
             strcpy(message, "OK");
         }
         else if (strcmp(input, "F") == 0) {
             //printf("%s\n", get(deck,0)->name);
-            move(columns[6], columns[1]);
+            move(columns[3],columns[5],"8H");
             strcpy(message, "OK");
         }else {
             strcpy(message, "ERROR: Unknown command");
@@ -196,9 +194,10 @@ const char* playMenu() {
     return input;
 }
 
-void move(Card* colfrom, Card* colto){
-    Card* a = last(colfrom);
-    Card* b = last(colto);
+void move(Card* colFrom, Card* colTo, const char cardName[3]){
+
+    Card* a = matchFound(colFrom, cardName);
+    Card* b = last(colTo);
 
     a->previous->next = NULL;
     a->previous = b;

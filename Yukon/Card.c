@@ -89,3 +89,16 @@ Card* get(Card *from, int n) {
     }
     return card;
 }
+
+Card* matchFound(Card* col, const char cardName[3]){
+    Card* current = col; // Start with the top card
+    while (current != NULL) {  // Traverse until the end of the list
+        if (strcmp(current->name, cardName) == 0) {
+            return current;
+        } else {
+            current = current->next;  // Move to the next card
+        }
+    }
+}
+
+
