@@ -199,7 +199,7 @@ const char* playMenu() {
             inPlayMenu = false;
         }else if (strcmp(input, "B") == 0) {
             //printf("%s\n", get(deck,0)->name);
-            move(get(deck,0), columns[2]);
+            move(columns[0], columns[2]);
             strcpy(message, "OK");
         }else {
             strcpy(message, "ERROR: Unknown command");
@@ -209,9 +209,9 @@ const char* playMenu() {
     return input;
 }
 
-void move(Card* card1, Card* col){
-    Card* a = card1;
-    Card* b = last(col);
+void move(Card* colfrom, Card* colto){
+    Card* a = last(colfrom);
+    Card* b = last(colto);
 
     a->previous->next = NULL;
     a->previous = b;
