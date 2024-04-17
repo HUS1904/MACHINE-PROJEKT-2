@@ -80,6 +80,7 @@ void printBoard(){
            maybe(get(columns[6], 4)),
            maybeF(foundations[2])
     );
+
     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
            maybe(get(columns[0], 5)),
            maybe(get(columns[1], 5)),
@@ -99,42 +100,23 @@ void printBoard(){
            maybe(get(columns[6], 6)),
            maybeF(foundations[3])
     );
-    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
-           maybe(get(columns[0], 7)),
-           maybe(get(columns[1], 7)),
-           maybe(get(columns[2], 7)),
-           maybe(get(columns[3], 7)),
-           maybe(get(columns[4], 7)),
-           maybe(get(columns[5], 7)),
-           maybe(get(columns[6], 7))
-    );
-    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
-           maybe(get(columns[0], 8)),
-           maybe(get(columns[1], 8)),
-           maybe(get(columns[2], 8)),
-           maybe(get(columns[3], 8)),
-           maybe(get(columns[4], 8)),
-           maybe(get(columns[5], 8)),
-           maybe(get(columns[6], 8))
-    );
-    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
-           maybe(get(columns[0], 9)),
-           maybe(get(columns[1], 9)),
-           maybe(get(columns[2], 9)),
-           maybe(get(columns[3], 9)),
-           maybe(get(columns[4], 9)),
-           maybe(get(columns[5], 9)),
-           maybe(get(columns[6], 9))
-    );
-    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
-           maybe(get(columns[0], 10)),
-           maybe(get(columns[1], 10)),
-           maybe(get(columns[2], 10)),
-           maybe(get(columns[3], 10)),
-           maybe(get(columns[4], 10)),
-           maybe(get(columns[5], 10)),
-           maybe(get(columns[6], 10))
-    );
+    for (int i=7;i < 26;i++) {
+        if (get(columns[0], i) == NULL && get(columns[1], i) == NULL && get(columns[2], i) == NULL
+            && get(columns[3], i) == NULL && get(columns[4], i) == NULL && get(columns[5], i) == NULL
+            && get(columns[6], i) == NULL) {
+            return;
+        } else {
+            printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+                   maybe(get(columns[0], i)),
+                   maybe(get(columns[1], i)),
+                   maybe(get(columns[2], i)),
+                   maybe(get(columns[3], i)),
+                   maybe(get(columns[4], i)),
+                   maybe(get(columns[5], i)),
+                   maybe(get(columns[6], i))
+            );
+        }
+    }
 }
 
 const char* mainMenu() {
@@ -199,7 +181,12 @@ const char* playMenu() {
             inPlayMenu = false;
         }else if (strcmp(input, "B") == 0) {
             //printf("%s\n", get(deck,0)->name);
-            move(columns[0], columns[2]);
+            move(columns[1], columns[6]);
+            strcpy(message, "OK");
+        }
+        else if (strcmp(input, "F") == 0) {
+            //printf("%s\n", get(deck,0)->name);
+            move(columns[6], columns[1]);
             strcpy(message, "OK");
         }else {
             strcpy(message, "ERROR: Unknown command");
