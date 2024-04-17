@@ -1,8 +1,10 @@
 #include <string.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "Card.h"
 
-Card buildCard(const char name[2]) {
+Card buildCard(const char name[3]) {
     Card newCard;
     newCard.name[0] = name[0];
     newCard.name[1] = name[1];
@@ -63,15 +65,44 @@ Card buildCard(const char name[2]) {
 }
 
 void linkCards(Card *previous, Card *next) {
-    next->previous = previous;
-    previous->next = next;
+    if(previous == next) {
+        return;
+    } else if(previous == NULL) {
+        next->previous = NULL;
+    } else if(next == NULL) {
+        previous->next = NULL;
+    } else {
+        next->previous = previous;
+        previous->next = next;
+    }
 }
 
 void insert(Card *previous, Card *next, Card *inserted) {
-    previous->next = inserted;
+    if(previous != NULL)
+        previous->next = inserted;
+
     inserted->previous = previous;
     inserted->next = next;
-    next->previous = inserted;
+
+    if(next != NULL)
+        next->previous = inserted;
+}
+
+void removeCard(Card *removed) {
+    if (removed->previous != NULL)
+        removed->previous->next = removed->next;
+    if (removed->next != NULL)
+        removed->next->previous = removed->previous;
+    free(removed);
+    removed = NULL;
+}
+
+int lengthAcc(Card* first, int n) {
+    return first->next == NULL ? n : lengthAcc(first->next, n + 1);
+}
+
+int length(Card *first) {
+    return first == NULL ? 0 : lengthAcc(first, 1);
 }
 
 Card* first(Card *check) {

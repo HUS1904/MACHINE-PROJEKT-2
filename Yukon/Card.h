@@ -31,4 +31,10 @@ Card* last(Card *check);
 // Get the nth card following the one given
 Card* get(Card *from, int n);
 
+// Remove a card, link its neighbours and free its memory
+void removeCard(Card *removed);
+
+// Get the length of a list of cards
+int length(Card *first);
+
 #endif
