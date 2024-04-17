@@ -1,3 +1,0 @@
-C:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/cmake-build-debug/CMakeFiles/MACHINE_PROJEKT_2.dir
-C:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
