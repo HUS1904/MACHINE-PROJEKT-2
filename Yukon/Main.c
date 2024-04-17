@@ -5,6 +5,7 @@
 #include "Card.h"
 #include "Board.h"
 #include "Split.h"
+#include "SaveDeck.h"
 
 char lastCommand[100];
 char message[100];
@@ -120,6 +121,14 @@ const char* mainMenu() {
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = 0;
         sscanf(input, "%s %s", command, filename);
+const char* mainMenu(){
+    strcpy(command, "");
+    strcpy(filename, "");
+    printf("\nLAST Command: %s", lastCommand);
+    printf("\nMessage: %s", message);
+    printf("\nINPUT > ");
+    gets(input);
+    sscanf(input, "%s %s", command, filename);
 
         if (strcmp(command, "LD") == 0) {
             resetColumns(columns);
@@ -194,9 +203,14 @@ const char* playMenu() {
         }
     }else if (strcmp(input, "SR") == 0) {
         printf("SR command\n");
-    } else if (strcmp(input, "SD") == 0) {
-        printf("SD command\n");
-    } else if (strcmp(input, "QQ") == 0) {
+    } else if (strcmp(command, "SD") == 0) {
+        strcmp(filename, "") == 0
+        ? strcpy(message, connectToFile("cards.txt"))
+        : strcpy(message, connectToFile(filename));
+        if(strcmp(message,"OK") == 0){
+            saveE(deck);
+        }
+    } else if (strcmp(command, "QQ") == 0) {
         printf("QQ command - Quitting\n");
     } else {
         printf("Unknown command\n");
