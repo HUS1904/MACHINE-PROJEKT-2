@@ -4,13 +4,14 @@
 #include "Load.h"
 #include "Card.h"
 #include "Board.h"
+#include "Split.h"
 
 char lastCommand[100];
 char message[100];
 char input[100];
 char filename[100];
 char command[100];
-bool loaded;
+
 
 Card* columns[7];
 Card* foundations[4];
@@ -21,6 +22,9 @@ void printBoard();
 const char* mainMenu();
 const char* playMenu();
 void run();
+
+
+
 
 int main(){
     run();
@@ -170,12 +174,40 @@ const char* playMenu() {
             strcpy(message, "ERROR: Unknown command");
         }
         strcpy(lastCommand, input);
+        if(strcmp(message, "OK") == 0)
+            arrangeEvenly(columns, deck);
+    } else if (strcmp(input, "SW") == 0) {
+        printf("SW command\n");
+    } else if (strcmp(command, "SI") == 0) {
+        resetColumns(columns);
+        if (deck) { // Ensure deck is loaded before attempting to split
+            int splitIndex = atoi(filename);
+            if(splitIndex >= 52 || splitIndex < 1) {
+                splitIndex = rand() % 50 + 1;
+            }
+            // Now call splitDeck with either the provided or default index
+            strcpy(message, splitDeck(&deck, splitIndex));
+            arrangeEvenly(columns, deck);
+            // Optionally, directly print the deck to visualize the changes
+        } else {
+            printf("Load a deck first.\n");
+        }
+    }else if (strcmp(input, "SR") == 0) {
+        printf("SR command\n");
+    } else if (strcmp(input, "SD") == 0) {
+        printf("SD command\n");
+    } else if (strcmp(input, "QQ") == 0) {
+        printf("QQ command - Quitting\n");
+    } else {
+        printf("Unknown command\n");
     }
     return input;
 }
 
+
+
+
 void run(){
-    loaded = false;
     while (strcmp(command, "QQ") != 0) {
         printBoard();
         strcpy(command, mainMenu());

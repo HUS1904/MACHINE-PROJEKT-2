@@ -82,6 +82,7 @@ void insert(Card *previous, Card *next, Card *inserted) {
         previous->next = inserted;
 
     inserted->previous = previous;
+    inserted->next->previous = NULL;
     inserted->next = next;
 
     if(next != NULL)
@@ -95,6 +96,14 @@ void removeCard(Card *removed) {
         removed->next->previous = removed->previous;
     free(removed);
     removed = NULL;
+}
+
+int lengthAcc(Card* first, int n) {
+    return first->next == NULL ? n : lengthAcc(first->next, n + 1);
+}
+
+int length(Card *first) {
+    return first == NULL ? 0 : lengthAcc(first, 1);
 }
 
 int lengthAcc(Card* first, int n) {
