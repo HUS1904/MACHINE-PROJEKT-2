@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "MACHINE_PROJEKT_2.exe"
-		},
-		{
-			"path" : "MACHINE_PROJEKT_2.pdb"
+			"path" : "MACHINE_PROJEKT_2"
 		}
 	],
 	"backtrace" : 1,
@@ -38,7 +35,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
+					"fragment" : "-std=gnu11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk"
 				}
 			],
 			"language" : "C",
@@ -65,22 +62,14 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
-				"role" : "flags"
-			},
-			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "C"
 	},
 	"name" : "MACHINE_PROJEKT_2",
-	"nameOnDisk" : "MACHINE_PROJEKT_2.exe",
+	"nameOnDisk" : "MACHINE_PROJEKT_2",
 	"paths" : 
 	{
 		"build" : ".",

@@ -150,7 +150,6 @@ const char* mainMenu() {
 
         if (strcmp(command, "LD") == 0) {
             resetColumns(columns);
-
             strcmp(filename, "") == 0
             ? strcpy(message, load("default.txt", &deck))
             : strcpy(message, load(filename, &deck));

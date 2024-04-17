@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.27"
@@ -19,7 +19,7 @@
 					]
 				}
 			],
-			"name" : "Debug",
+			"name" : "",
 			"projects" : 
 			[
 				{
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MACHINE_PROJEKT_2::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MACHINE_PROJEKT_2-Debug-700986f6a48752a279e1.json",
+					"jsonFile" : "target-MACHINE_PROJEKT_2-1be6b16dd0442f6472b5.json",
 					"name" : "MACHINE_PROJEKT_2",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Hussein Jarrah/Desktop/MACHINE-PROJEKT-2/cmake-build-debug",
-		"source" : "C:/Users/Hussein Jarrah/Desktop/MACHINE-PROJEKT-2"
+		"build" : "/Users/hussein/Desktop/Skole/DTU/2-semester/Maskinn\u00e6r programmering/Projekt 2/MACHINE-PROJEKT-2/cmake-build-debug",
+		"source" : "/Users/hussein/Desktop/Skole/DTU/2-semester/Maskinn\u00e6r programmering/Projekt 2/MACHINE-PROJEKT-2"
 	},
 	"version" : 
 	{
