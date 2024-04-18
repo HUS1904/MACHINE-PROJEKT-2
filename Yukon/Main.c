@@ -174,11 +174,11 @@ const char* playMenu() {
         printf("\nINPUT >");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = 0;  // Remove newline character
-        if(strlen(input) > 6) {
+        if(strlen(input) == 9) {
             strcpy(sourceCol, strtok(input, ":"));
             strcpy(card, strtok(&input[3], "->"));
             strcpy(destCol, &input[7]);
-        } else {
+        } else if(strlen(input) == 6) {
             strcpy(sourceCol, strtok(input, ":"));
             strcpy(destCol, &input[4]);
             strcpy(card, last(columns[sourceCol[1] - '1'])->name);
