@@ -83,6 +83,9 @@ Card* last(Card *check) {
 }
 
 Card* get(Card *from, int n) {
+    if(from == NULL) {
+        return NULL;
+    }
     Card* card = from;
     while (card != NULL && n-- > 0) {
         card = card->next;

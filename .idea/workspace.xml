@@ -20,7 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="Input added (will need foolproofing)">
+    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="Now it only tries to parse inputs of length 9 or 6">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yukon/Card.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Card.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yukon/Main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,11 +111,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MACHINE_PROJEKT_2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MACHINE_PROJEKT_2" TARGET_NAME="MACHINE_PROJEKT_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MACHINE_PROJEKT_2" RUN_TARGET_NAME="MACHINE_PROJEKT_2">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -140,7 +137,8 @@
       <workItem from="1713034905263" duration="16129000" />
       <workItem from="1713351342256" duration="826000" />
       <workItem from="1713352270761" duration="1052000" />
-      <workItem from="1713425496971" duration="2473000" />
+      <workItem from="1713425496971" duration="2539000" />
+      <workItem from="1713428427911" duration="636000" />
     </task>
     <task id="LOCAL-00001" summary="LD mostly done, user cannot specify files tho">
       <option name="closed" value="true" />
@@ -174,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713427773836</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Now it only tries to parse inputs of length 9 or 6">
+      <option name="closed" value="true" />
+      <created>1713428024596</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713428024596</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +206,8 @@
     <MESSAGE value="LD mostly done, user cannot specify files tho" />
     <MESSAGE value="LD done" />
     <MESSAGE value="Input added (will need foolproofing)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Input added (will need foolproofing)" />
+    <MESSAGE value="Now it only tries to parse inputs of length 9 or 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now it only tries to parse inputs of length 9 or 6" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

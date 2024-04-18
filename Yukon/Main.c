@@ -23,7 +23,7 @@ Card* deck;
 void printBoard();
 const char* mainMenu();
 const char* playMenu();
-void move(Card* colFrom, Card* colTo,const char cardName[3]);
+void move(Card** colFrom, Card** colTo,const char cardName[3]);
 void run();
 
 int main(){
@@ -189,7 +189,7 @@ const char* playMenu() {
             inPlayMenu = false;
         } else {
             printf("Starting move\n");
-            move(columns[sourceCol[1] - '1'], columns[destCol[1] - '1'], card);
+            move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
             strcpy(message, "OK");
         }
         strcpy(lastCommand, input);
@@ -197,12 +197,15 @@ const char* playMenu() {
     return input;
 }
 
-void move(Card* colFrom, Card* colTo, const char cardName[3]){
-    printf("Moving card: %s, from column with first card: %s, to column with first card %s\n", cardName, colFrom->name, colTo->name);
-    Card* a = matchFound(colFrom, cardName);
-    Card* b = last(colTo);
+void move(Card** colFrom, Card** colTo, const char cardName[3]){
+    printf("Moving card: %s, from column with first card: %s, to column with first card %s\n", cardName, (*colFrom)->name, (*colTo)->name);
+    Card* a = matchFound(*colFrom, cardName);
+    Card* b = last(*colTo);
 
-    a->previous->next = NULL;
+    if(a->previous != NULL)
+        a->previous->next = NULL;
+    else
+        *colFrom = NULL;
     a->previous = b;
     b->next = a;
     a->hidden = false;
