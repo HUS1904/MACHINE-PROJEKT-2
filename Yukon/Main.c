@@ -10,7 +10,9 @@ char message[100];
 char input[100];
 char filename[100];
 char command[100];
-char card[100];
+char card[10];
+char sourceCol[10];
+char destCol[10];
 bool loaded;
 
 Card* columns[7];
@@ -172,22 +174,23 @@ const char* playMenu() {
         printf("\nINPUT >");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = 0;  // Remove newline character
-        sscanf(input,"%s", card);
+        if(strlen(input) > 6) {
+            strcpy(sourceCol, strtok(input, ":"));
+            strcpy(card, strtok(&input[3], "->"));
+            strcpy(destCol, &input[7]);
+        } else {
+            strcpy(sourceCol, strtok(input, ":"));
+            strcpy(destCol, &input[4]);
+            strcpy(card, last(columns[sourceCol[1] - '1'])->name);
+        }
 
         if (strcmp(input, "Q") == 0) {
             strcpy(message, "OK");
             inPlayMenu = false;
-        }else if (strcmp(input, "B") == 0) {
-            //printf("%s\n", get(deck,0)->name);
-            move(columns[3], columns[5], "8H");
+        } else {
+            printf("Starting move\n");
+            move(columns[sourceCol[1] - '1'], columns[destCol[1] - '1'], card);
             strcpy(message, "OK");
-        }
-        else if (strcmp(input, "F") == 0) {
-            //printf("%s\n", get(deck,0)->name);
-            move(columns[3],columns[5],"8H");
-            strcpy(message, "OK");
-        }else {
-            strcpy(message, "ERROR: Unknown command");
         }
         strcpy(lastCommand, input);
     }
@@ -195,7 +198,7 @@ const char* playMenu() {
 }
 
 void move(Card* colFrom, Card* colTo, const char cardName[3]){
-
+    printf("Moving card: %s, from column with first card: %s, to column with first card %s\n", cardName, colFrom->name, colTo->name);
     Card* a = matchFound(colFrom, cardName);
     Card* b = last(colTo);
 
