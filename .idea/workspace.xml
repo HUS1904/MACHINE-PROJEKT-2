@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="Now it only tries to parse inputs of length 9 or 6">
+    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="Groundwork for bugfix about empty columns">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yukon/Card.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Card.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yukon/Main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Main.c" afterDir="false" />
@@ -138,7 +138,7 @@
       <workItem from="1713351342256" duration="826000" />
       <workItem from="1713352270761" duration="1052000" />
       <workItem from="1713425496971" duration="2539000" />
-      <workItem from="1713428427911" duration="636000" />
+      <workItem from="1713428427911" duration="1084000" />
     </task>
     <task id="LOCAL-00001" summary="LD mostly done, user cannot specify files tho">
       <option name="closed" value="true" />
@@ -180,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713428024596</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Groundwork for bugfix about empty columns">
+      <option name="closed" value="true" />
+      <created>1713429139429</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713429139429</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +215,8 @@
     <MESSAGE value="LD done" />
     <MESSAGE value="Input added (will need foolproofing)" />
     <MESSAGE value="Now it only tries to parse inputs of length 9 or 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now it only tries to parse inputs of length 9 or 6" />
+    <MESSAGE value="Groundwork for bugfix about empty columns" />
+    <option name="LAST_COMMIT_MESSAGE" value="Groundwork for bugfix about empty columns" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

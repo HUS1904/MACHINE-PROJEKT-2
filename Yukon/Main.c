@@ -206,8 +206,15 @@ void move(Card** colFrom, Card** colTo, const char cardName[3]){
         a->previous->next = NULL;
     else
         *colFrom = NULL;
-    a->previous = b;
-    b->next = a;
+
+    if(b != NULL) {
+        a->previous = b;
+        b->next = a;
+    } else {
+        *colTo = a;
+        a->previous = NULL;
+    }
+
     a->hidden = false;
 }
 

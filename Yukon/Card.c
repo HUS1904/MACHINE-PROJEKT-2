@@ -75,11 +75,11 @@ void insert(Card *previous, Card *next, Card *inserted) {
 }
 
 Card* first(Card *check) {
-    return check->previous == NULL ? check : first(check->previous);
+    return check == NULL ? NULL : check->previous == NULL ? check : first(check->previous);
 }
 
 Card* last(Card *check) {
-    return check->next == NULL ? check : last(check->next);
+    return check == NULL ? NULL : check->next == NULL ? check : last(check->next);
 }
 
 Card* get(Card *from, int n) {
