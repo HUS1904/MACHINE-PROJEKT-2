@@ -12,4 +12,10 @@ add_executable(MACHINE_PROJEKT_2
         Yukon/Board.c
         Yukon/Board.h
         Yukon/Main.h
+        Yukon/Split.c
+        Yukon/Split.h
+        Yukon/Shuffle.c
+        Yukon/shuffle.h
+        Yukon/SaveDeck.c
+        Yukon/SaveDeck.h
 )

@@ -6,26 +6,24 @@
 #include "Board.h"
 #include "Split.h"
 #include "SaveDeck.h"
+#include "Shuffle.h"
 
 char lastCommand[100];
 char message[100];
 char input[100];
 char filename[100];
 char command[100];
-
+char card[10];
+bool loaded;
 
 Card* columns[7];
 Card* foundations[4];
 Card* deck;
 
-void run();
 void printBoard();
 const char* mainMenu();
 const char* playMenu();
 void run();
-
-
-
 
 int main(){
     run();
@@ -117,28 +115,21 @@ const char* mainMenu() {
         printBoard();
         printf("\nLAST Command: %s", lastCommand);
         printf("\nMessage: %s", message);
-        printf("\nINPUT > ");
+        printf("\nINPUT >");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = 0;
         sscanf(input, "%s %s", command, filename);
-const char* mainMenu(){
-    strcpy(command, "");
-    strcpy(filename, "");
-    printf("\nLAST Command: %s", lastCommand);
-    printf("\nMessage: %s", message);
-    printf("\nINPUT > ");
-    gets(input);
-    sscanf(input, "%s %s", command, filename);
 
         if (strcmp(command, "LD") == 0) {
             resetColumns(columns);
-
             strcmp(filename, "") == 0
             ? strcpy(message, load("default.txt", &deck))
             : strcpy(message, load(filename, &deck));
             if(strcmp(message, "OK") == 0)
                 arrangeEvenly(columns, deck);
-        } else if (strcmp(command, "SW") == 0) {
+        }
+
+        else if (strcmp(command, "SW") == 0) {
             if (!loaded) {
                 strcpy(message, "Error: no deck is loaded");
             } else {
@@ -146,16 +137,46 @@ const char* mainMenu(){
                 arrangeVisible(columns, deck);
                 strcpy(message, "OK");
             }
-        } else if (strcmp(input, "SL") == 0) {
-            printf("SL command\n");
-        } else if (strcmp(input, "SR") == 0) {
-            printf("SR command\n");
-        } else if (strcmp(input, "SD") == 0) {
-            printf("SD command\n");
-        } else if (strcmp(command, "P") == 0) {
+        }
+
+        else if (strcmp(input, "SI") == 0) {
+            resetColumns(columns);
+            if (deck) { // Ensure deck is loaded before attempting to split
+                int splitIndex = atoi(filename);
+                if(splitIndex >= 52 || splitIndex < 1) {
+                    splitIndex = rand() % 50 + 1;
+                }
+                // Now call splitDeck with either the provided or default index
+                strcpy(message, splitDeck(&deck, splitIndex));
+                arrangeEvenly(columns, deck);
+                // Optionally, directly print the deck to visualize the changes
+            } else {
+                printf("Load a deck first.\n");
+            }
+        }
+
+        else if (strcmp(input, "SR") == 0) {
+            resetColumns(columns);
+            shuffle(&deck);
+            arrangeEvenly(columns, deck);
+        }
+
+        else if (strcmp(input, "SD") == 0) {
+            strcmp(filename, "") == 0
+            ? strcpy(message, connectToFile("cards.txt"))
+            : strcpy(message, connectToFile(filename));
+            if(strcmp(message,"OK") == 0){
+                saveE(deck);
+            }
+        }
+
+        else if (strcmp(command, "P") == 0) {
             playMenu();
             continueMainMenu = false;
-        } else {
+            strcpy(message, "OK");
+        }
+
+        else {
             strcpy(message, "ERROR: Unknown command");
         }
         strcpy(lastCommand, input);
@@ -169,61 +190,25 @@ const char* playMenu() {
         printBoard();
         printf("\nLAST Command: %s", lastCommand);
         printf("\nMessage: %s", message);
-        printf("\nINPUT > ");
+        printf("\nINPUT >");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = 0;  // Remove newline character
-        sscanf(input, "%s %s", command, filename);
 
-        if (strcmp(command, "move") == 0) {
-            strcpy(message, "OK");
-        } else if (strcmp(command, "Q") == 0) {
+        if (strcmp(input, "Q") == 0) {
             strcpy(message, "OK");
             inPlayMenu = false;
         } else {
-            strcpy(message, "ERROR: Unknown command");
+            strcpy(message, "OK");
         }
         strcpy(lastCommand, input);
-        if(strcmp(message, "OK") == 0)
-            arrangeEvenly(columns, deck);
-    } else if (strcmp(input, "SW") == 0) {
-        printf("SW command\n");
-    } else if (strcmp(command, "SI") == 0) {
-        resetColumns(columns);
-        if (deck) { // Ensure deck is loaded before attempting to split
-            int splitIndex = atoi(filename);
-            if(splitIndex >= 52 || splitIndex < 1) {
-                splitIndex = rand() % 50 + 1;
-            }
-            // Now call splitDeck with either the provided or default index
-            strcpy(message, splitDeck(&deck, splitIndex));
-            arrangeEvenly(columns, deck);
-            // Optionally, directly print the deck to visualize the changes
-        } else {
-            printf("Load a deck first.\n");
-        }
-    }else if (strcmp(input, "SR") == 0) {
-        printf("SR command\n");
-    } else if (strcmp(command, "SD") == 0) {
-        strcmp(filename, "") == 0
-        ? strcpy(message, connectToFile("cards.txt"))
-        : strcpy(message, connectToFile(filename));
-        if(strcmp(message,"OK") == 0){
-            saveE(deck);
-        }
-    } else if (strcmp(command, "QQ") == 0) {
-        printf("QQ command - Quitting\n");
-    } else {
-        printf("Unknown command\n");
     }
     return input;
 }
 
 
-
-
 void run(){
+    loaded = false;
     while (strcmp(command, "QQ") != 0) {
-        printBoard();
         strcpy(command, mainMenu());
     }
 }

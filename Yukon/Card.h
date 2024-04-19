@@ -35,7 +35,5 @@ Card* get(Card *from, int n);
 void removeCard(Card *removed);
 
 // Get the length of a list of cards
-// Get the length of the deck from this card on
 int length(Card *first);
-
 #endif
