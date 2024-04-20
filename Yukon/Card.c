@@ -81,6 +81,10 @@ void insert(Card *previous, Card *next, Card *inserted) {
     if(previous != NULL)
         previous->next = inserted;
 
+    if(inserted->next != NULL) {
+        inserted->next->previous = NULL;
+    }
+
     inserted->previous = previous;
     inserted->next = next;
 
