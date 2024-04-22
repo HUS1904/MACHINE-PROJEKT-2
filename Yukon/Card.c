@@ -104,4 +104,15 @@ Card* matchFound(Card* col, const char cardName[3]){
     }
 }
 
+bool isDifferentSuit(Card* a, Card* b){
+    return !(a->suit == b->suit);
+}
+
+bool isOneRankLower(Card* a, Card* b){
+    return b->precedence - a->precedence == 1;
+}
+
+bool isOneRankHigher(Card* a, Card* b){
+    return a->precedence - b->precedence == 1;
+}
 

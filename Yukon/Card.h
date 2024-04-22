@@ -33,4 +33,13 @@ Card* get(Card *from, int n);
 
 Card* matchFound(Card* col, const char cardName[3]);
 
+// Checks if the two cards are of a different suit
+bool isDifferentSuit(Card* a, Card* b);
+
+// Checks if card a is one rank below card b
+bool isOneRankLower(Card* a, Card* b);
+
+// Checks if card a is one rank above card b
+bool isOneRankHigher(Card* a, Card* b);
+
 #endif

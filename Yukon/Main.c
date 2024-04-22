@@ -188,9 +188,32 @@ const char* playMenu() {
             strcpy(message, "OK");
             inPlayMenu = false;
         } else {
-            printf("Starting move\n");
-            move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
-            strcpy(message, "OK");
+            // Move a card to an empty foundation
+            if(destCol[0] == 'F'){
+                if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence == 1){
+                    move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
+                    strcpy(message, "OK");
+                    // Move a card to a non-empty foundation
+                } else if( matchFound(columns[sourceCol[1] - '1'], card)->precedence - foundations[destCol[1] - '1']->precedence == 1 && !isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), foundations[destCol[1] - '1'])){
+                    move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
+                    strcpy(message, "OK");
+                }
+                // Standard move
+            } else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))){
+                move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
+                strcpy(message, "OK");
+                // Move K to an empty column
+            } else if(card[0] == 'K' && destCol[0] == 'C' && columns[destCol[1] - '1'] == NULL){
+                move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
+                strcpy(message, "OK");
+            } else{
+                strcpy(message, "Error: not a valid move!");
+            }
+
+            //Unhide the last card of a column if hidden.
+            if (last(columns[sourceCol[1] - '1'])->hidden){
+                last(columns[sourceCol[1] - '1'])->hidden = false;
+            }
         }
         strcpy(lastCommand, input);
     }
