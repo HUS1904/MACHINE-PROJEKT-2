@@ -219,7 +219,7 @@ const char* playMenu() {
         } else {
             // Move a card to an empty foundation
             if(destCol[0] == 'F'){
-                if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence == 1){
+                if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1){
                     move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
                     strcpy(message, "OK");
                     // Move a card to a non-empty foundation
@@ -240,8 +240,10 @@ const char* playMenu() {
             }
 
             //Unhide the last card of a column if hidden.
-            if (last(columns[sourceCol[1] - '1'])->hidden){
-                last(columns[sourceCol[1] - '1'])->hidden = false;
+            if((last(columns[sourceCol[1] - '1']) != NULL)) {
+                if (last(columns[sourceCol[1] - '1'])->hidden) {
+                    last(columns[sourceCol[1] - '1'])->hidden = false;
+                }
             }
         }
         strcpy(lastCommand, input);
@@ -250,14 +252,15 @@ const char* playMenu() {
 }
 
 void move(Card** colFrom, Card** colTo, const char cardName[3]){
-    printf("Moving card: %s, from column with first card: %s, to column with first card %s\n", cardName, (*colFrom)->name, (*colTo)->name);
     Card* a = matchFound(*colFrom, cardName);
     Card* b = last(*colTo);
 
-    if(a->previous != NULL)
+    if(a->previous != NULL) {
         a->previous->next = NULL;
-    else
+    }
+    else {
         *colFrom = NULL;
+    }
 
     if(b != NULL) {
         a->previous = b;
