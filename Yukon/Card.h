@@ -36,4 +36,17 @@ void removeCard(Card *removed);
 
 // Get the length of a list of cards
 int length(Card *first);
+
+// Returns pointer to card with name if found within col
+Card* matchFound(Card* col, const char cardName[3]);
+
+// Checks if the two cards are of a different suit
+bool isDifferentSuit(Card* a, Card* b);
+
+// Checks if card a is one rank below card b
+bool isOneRankLower(Card* a, Card* b);
+
+// Checks if card a is one rank above card b
+bool isOneRankHigher(Card* a, Card* b);
+
 #endif

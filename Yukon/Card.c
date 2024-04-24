@@ -110,17 +110,44 @@ int length(Card *first) {
 }
 
 Card* first(Card *check) {
-    return check->previous == NULL ? check : first(check->previous);
+    return check == NULL ? NULL : check->previous == NULL ? check : first(check->previous);
 }
 
 Card* last(Card *check) {
-    return check->next == NULL ? check : last(check->next);
+    return check == NULL ? NULL : check->next == NULL ? check : last(check->next);
 }
 
 Card* get(Card *from, int n) {
+    if(from == NULL) {
+        return NULL;
+    }
     Card* card = from;
     while (card != NULL && n-- > 0) {
         card = card->next;
     }
     return card;
 }
+
+Card* matchFound(Card* col, const char cardName[3]){
+    Card* current = col; // Start with the top card
+    while (current != NULL) {  // Traverse until the end of the list
+        if (strcmp(current->name, cardName) == 0) {
+            return current;
+        } else {
+            current = current->next;  // Move to the next card
+        }
+    }
+}
+
+bool isDifferentSuit(Card* a, Card* b){
+    return !(a->suit == b->suit);
+}
+
+bool isOneRankLower(Card* a, Card* b){
+    return b->precedence - a->precedence == 1;
+}
+
+bool isOneRankHigher(Card* a, Card* b){
+    return a->precedence - b->precedence == 1;
+}
+

@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="Git Bash won't let me check out if I don't commit these">
+    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="Groundwork for bugfix about empty columns">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yukon/Card.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Card.c" afterDir="false" />
     </list>
@@ -37,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Move" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,7 +87,7 @@
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Move&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/andre/Documents/DTU/MaskinaerProgrammering/C/repo/MACHINE-PROJEKT-2/cmake-build-debug&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -105,10 +105,16 @@
       <recent name="C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cmake-build-debug" />
       <recent name="C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="MACHINE_PROJEKT_2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MACHINE_PROJEKT_2" TARGET_NAME="MACHINE_PROJEKT_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MACHINE_PROJEKT_2" RUN_TARGET_NAME="MACHINE_PROJEKT_2">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MACHINE_PROJEKT_2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MACHINE_PROJEKT_2" TARGET_NAME="MACHINE_PROJEKT_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MACHINE_PROJEKT_2" RUN_TARGET_NAME="MACHINE_PROJEKT_2">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -137,6 +143,14 @@
       <workItem from="1712681029629" duration="7837000" />
       <workItem from="1712748476085" duration="4878000" />
       <workItem from="1712754771836" duration="10063000" />
+      <workItem from="1713034905263" duration="16129000" />
+      <workItem from="1713351342256" duration="826000" />
+      <workItem from="1713352270761" duration="1052000" />
+      <workItem from="1713425496971" duration="2539000" />
+      <workItem from="1713428427911" duration="1084000" />
+      <workItem from="1713606814759" duration="1438000" />
+      <workItem from="1713649221769" duration="3665000" />
+      <workItem from="1713779867787" duration="1890000" />
     </task>
     <task id="LOCAL-00001" summary="LD mostly done, user cannot specify files tho">
       <option name="closed" value="true" />
@@ -162,7 +176,31 @@
       <option name="project" value="LOCAL" />
       <updated>1712569415852</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Input added (will need foolproofing)">
+      <option name="closed" value="true" />
+      <created>1713427773836</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713427773836</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Now it only tries to parse inputs of length 9 or 6">
+      <option name="closed" value="true" />
+      <created>1713428024596</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713428024596</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Groundwork for bugfix about empty columns">
+      <option name="closed" value="true" />
+      <created>1713429139429</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713429139429</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +225,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="LD mostly done, user cannot specify files tho" />
     <MESSAGE value="LD done" />
-    <option name="LAST_COMMIT_MESSAGE" value="LD done" />
+    <MESSAGE value="Input added (will need foolproofing)" />
+    <MESSAGE value="Now it only tries to parse inputs of length 9 or 6" />
+    <MESSAGE value="Groundwork for bugfix about empty columns" />
+    <option name="LAST_COMMIT_MESSAGE" value="Groundwork for bugfix about empty columns" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
