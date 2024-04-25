@@ -140,7 +140,7 @@ Card* matchFound(Card* col, const char cardName[3]){
 }
 
 bool isDifferentSuit(Card* a, Card* b){
-    return !(a->suit == b->suit);
+    return a == NULL || b == NULL ? false : !(a->suit == b->suit);
 }
 
 bool isOneRankLower(Card* a, Card* b){

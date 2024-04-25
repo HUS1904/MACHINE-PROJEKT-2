@@ -134,6 +134,7 @@ const char* mainMenu() {
 
         if (strcmp(command, "LD") == 0) {
             resetColumns(columns);
+            resetFoundations(foundations);
             strcmp(filename, "") == 0
             ? strcpy(message, load("default.txt", &deck))
             : strcpy(message, load(filename, &deck));
@@ -144,6 +145,7 @@ const char* mainMenu() {
                 strcpy(message, "Error: no deck is loaded");
             } else {
                 resetColumns(columns);
+                resetFoundations(foundations);
                 arrangeVisible(columns, deck);
                 strcpy(message, "OK");
             }
@@ -151,6 +153,7 @@ const char* mainMenu() {
 
         else if (strcmp(input, "SI") == 0) {
             resetColumns(columns);
+            resetFoundations(foundations);
             if (deck) { // Ensure deck is loaded before attempting to split
                 int splitIndex = atoi(filename);
                 if(splitIndex >= 52 || splitIndex < 1) {
@@ -167,6 +170,7 @@ const char* mainMenu() {
 
         else if (strcmp(input, "SR") == 0) {
             resetColumns(columns);
+            resetFoundations(foundations);
             shuffle(&deck);
             arrangeEvenly(columns, deck);
         }
@@ -182,6 +186,7 @@ const char* mainMenu() {
 
         else if (strcmp(command, "P") == 0) {
             resetColumns(columns);
+            resetFoundations(foundations);
             arrangeP(columns, deck);
             playMenu();
             continueMainMenu = false;
@@ -212,11 +217,13 @@ const char* playMenu() {
             strcpy(destCol, &input[4]);
             strcpy(card, last(columns[sourceCol[1] - '1'])->name);
         }
+        printf("Accepted input\n");
 
         if (strcmp(input, "Q") == 0) {
             strcpy(message, "OK");
             inPlayMenu = false;
         } else {
+            printf("Checking input\n");
             // Move a card to an empty foundation
             if(destCol[0] == 'F'){
                 if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1){
@@ -229,10 +236,12 @@ const char* playMenu() {
                 }
                 // Standard move
             } else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))){
+                printf("Different suit\n");
                 move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
                 strcpy(message, "OK");
                 // Move K to an empty column
             } else if(card[0] == 'K' && destCol[0] == 'C' && columns[destCol[1] - '1'] == NULL){
+                printf("Moving to empty column\n");
                 move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
                 strcpy(message, "OK");
             } else{
@@ -252,6 +261,7 @@ const char* playMenu() {
 }
 
 void move(Card** colFrom, Card** colTo, const char cardName[3]){
+    printf("Started move\n");
     Card* a = matchFound(*colFrom, cardName);
     Card* b = last(*colTo);
 

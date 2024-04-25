@@ -10,4 +10,7 @@ const char* maybeF(Card* x);
 // Resets columns
 void resetColumns(Card* columns[7]);
 
+// Resets foundations
+void resetFoundations(Card* foundations[4]);
+
 #endif //MACHINE_PROJEKT_2_BOARD_H
