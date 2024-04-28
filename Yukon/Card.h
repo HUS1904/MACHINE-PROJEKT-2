@@ -49,4 +49,7 @@ bool isOneRankLower(Card* a, Card* b);
 // Checks if card a is one rank above card b
 bool isOneRankHigher(Card* a, Card* b);
 
+// For each function
+void forEach(void (*fun)(Card*), Card* card);
+
 #endif

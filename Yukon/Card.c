@@ -151,3 +151,8 @@ bool isOneRankHigher(Card* a, Card* b){
     return a->precedence - b->precedence == 1;
 }
 
+void forEach(void (*fun)(Card*), Card* card) {
+    fun(card);
+    if (card->next != NULL)
+        forEach(fun, card->next);
+}
