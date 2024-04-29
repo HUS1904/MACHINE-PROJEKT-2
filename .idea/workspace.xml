@@ -3,80 +3,55 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="CMakePresetLoader">{
-  &quot;useNewFormat&quot;: true
-}</component>
-  <component name="CMakeReloadState">
-    <option name="reloaded" value="true" />
-  </component>
-  <component name="CMakeRunConfigurationManager">
-    <generated>
-      <config projectName="MACHINE_PROJEKT_2" targetName="MACHINE_PROJEKT_2" />
-    </generated>
-  </component>
-  <component name="CMakeSettings">
-    <configurations>
-      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
-    </configurations>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="More bug fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yukon/Card.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Card.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yukon/Card.h" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Card.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yukon/Load.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Load.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yukon/Main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Yukon/Main.c" afterDir="false" />
+    <list default="true" id="bb879399-2b18-4e83-9eeb-a952775fd662" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MACHINE_PROJEKT_2.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Yukon.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/default.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solitaire/yukon/HelloApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solitaire/yukon/HelloController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/turned.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/state.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ClangdSettings">
-    <option name="clangTidyViaClangd" value="false" />
-    <option name="formatViaClangd" value="false" />
-  </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Move" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;HUS1904&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="667039eb-c363-49ff-9739-14c25a1bd0db" />
-        <option name="url" value="https://github.com/HUS1904/MACHINE-PROJEKT-2.git" />
-      </UrlAndAccount>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="fvhhub4t" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_HOME_DIR$/bin/mingw/x86_64-w64-mingw32/include/stdio.h" root0="SKIP_INSPECTION" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectApplicationVersion">
-    <option name="ide" value="CLion" />
-    <option name="majorVersion" value="2023" />
-    <option name="minorVersion" value="3.4" />
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="2e3YefItM6DpwSMBF6fGjai6JER" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectId" id="2fmJxpIklkAqXM1PF0abBnL0tAO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -85,190 +60,58 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.MACHINE_PROJEKT_2.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "development",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/savan/Documents/Yukon/MACHINE-PROJEKT-2/cmake-build-debug",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/savan/Documents/Yukon/MACHINE-PROJEKT-2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Errors",
-    "structure.view.defaults.are.configured": "true",
+    "org.rust.first.attach.projects": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\savan\Documents\Yukon\MACHINE-PROJEKT-2\cmake-build-debug" />
-      <recent name="C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cmake-build-debug" />
-      <recent name="C:\Users\andre\Documents\DTU\MaskinaerProgrammering\C\repo\MACHINE-PROJEKT-2\cmake-build-debug" />
+      <recent name="C:\Users\savan\Downloads\Yukon\Yukon\src\main\resources" />
+      <recent name="C:\Users\savan\Downloads\Yukon\Yukon\target" />
+      <recent name="C:\Users\savan\Downloads\Yukon\Yukon" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MACHINE_PROJEKT_2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MACHINE_PROJEKT_2" TARGET_NAME="MACHINE_PROJEKT_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MACHINE_PROJEKT_2" RUN_TARGET_NAME="MACHINE_PROJEKT_2">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MACHINE_PROJEKT_2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MACHINE_PROJEKT_2" TARGET_NAME="MACHINE_PROJEKT_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MACHINE_PROJEKT_2" RUN_TARGET_NAME="MACHINE_PROJEKT_2">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="13a168df-9c66-4b16-82f4-5f8ec4a2d366" name="Changes" comment="" />
-      <created>1711134826430</created>
+      <changelist id="bb879399-2b18-4e83-9eeb-a952775fd662" name="Changes" comment="" />
+      <created>1714400572864</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1711134826430</updated>
-      <workItem from="1711134827628" duration="3974000" />
-      <workItem from="1712404794079" duration="15000" />
-      <workItem from="1712404818737" duration="5000" />
-      <workItem from="1712404834789" duration="8917000" />
-      <workItem from="1712413822389" duration="13684000" />
-      <workItem from="1712642494758" duration="3000" />
-      <workItem from="1712681029629" duration="7837000" />
-      <workItem from="1712748476085" duration="4878000" />
-      <workItem from="1712754771836" duration="10063000" />
-      <workItem from="1713034905263" duration="16129000" />
-      <workItem from="1713351342256" duration="826000" />
-      <workItem from="1713352270761" duration="1052000" />
-      <workItem from="1713425496971" duration="2539000" />
-      <workItem from="1713428427911" duration="1084000" />
-      <workItem from="1713606814759" duration="1438000" />
-      <workItem from="1713649221769" duration="3665000" />
-      <workItem from="1713779867787" duration="1890000" />
-      <workItem from="1714043567772" duration="2045000" />
-      <workItem from="1714045632637" duration="544000" />
-      <workItem from="1714320053831" duration="1409000" />
-      <workItem from="1714383897390" duration="4128000" />
+      <updated>1714400572864</updated>
+      <workItem from="1714400573911" duration="17000" />
+      <workItem from="1714405705714" duration="1389000" />
+      <workItem from="1714410135958" duration="11098000" />
     </task>
-    <task id="LOCAL-00001" summary="LD mostly done, user cannot specify files tho">
-      <option name="closed" value="true" />
-      <created>1712436383583</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1712436383583</updated>
-    </task>
-    <task id="LOCAL-00002" summary="LD done">
-      <option name="closed" value="true" />
-      <created>1712561824241</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1712561824241</updated>
-    </task>
-    <task id="LOCAL-00003" summary="LD done">
-      <option name="closed" value="true" />
-      <created>1712569415852</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1712569415852</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Input added (will need foolproofing)">
-      <option name="closed" value="true" />
-      <created>1713427773836</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1713427773836</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Now it only tries to parse inputs of length 9 or 6">
-      <option name="closed" value="true" />
-      <created>1713428024596</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1713428024596</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Groundwork for bugfix about empty columns">
-      <option name="closed" value="true" />
-      <created>1713429139429</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1713429139429</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Merged development and Move???">
-      <option name="closed" value="true" />
-      <created>1713959260868</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1713959260869</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fixed bug when emptying column into foundation">
-      <option name="closed" value="true" />
-      <created>1713962911429</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1713962911429</updated>
-    </task>
-    <task id="LOCAL-00009" summary="More bug fixes">
-      <option name="closed" value="true" />
-      <created>1714045648320</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1714045648320</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="VCPKGProject">
-    <isAutomaticCheckingOnLaunch value="false" />
-    <isAutomaticFoundErrors value="true" />
-    <isAutomaticReloadCMake value="true" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="LD mostly done, user cannot specify files tho" />
-    <MESSAGE value="LD done" />
-    <MESSAGE value="Input added (will need foolproofing)" />
-    <MESSAGE value="Now it only tries to parse inputs of length 9 or 6" />
-    <MESSAGE value="Groundwork for bugfix about empty columns" />
-    <MESSAGE value="Merged development and Move???" />
-    <MESSAGE value="Fixed bug when emptying column into foundation" />
-    <MESSAGE value="More bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="More bug fixes" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
