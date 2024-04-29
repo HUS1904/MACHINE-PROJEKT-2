@@ -7,10 +7,22 @@
 #include "Split.h"
 #include "SaveDeck.h"
 #include "Shuffle.h"
+#include <winsock2.h>
+#include <winsock.h>
+
+#define PORT 8080
+#define BUFFER_SIZE 1024
+
+
+WSADATA wsa;
+SOCKET sockfd;
+struct sockaddr_in server_addr, client_addr;
+int recv_len, client_len,send_len;
 
 char lastCommand[100];
 char message[100];
-char input[100];
+char input[BUFFER_SIZE + 1];
+char response[BUFFER_SIZE + 1];
 char filename[100];
 char command[100];
 char card[10];
@@ -26,10 +38,46 @@ Card* deck;
 void printBoard();
 const char* mainMenu();
 const char* playMenu();
+void rewrite();
 void move(Card** colFrom, Card** colTo,const char cardName[3]);
 void run();
 
 int main(){
+    if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0) {
+        printf("WSAStartup failed\n");
+        return 1;
+    }
+
+    // Create UDP socket
+    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == SOCKET_ERROR) {
+        printf("Failed to create socket\n");
+        return 1;
+    }
+
+    // Initialize server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    server_addr.sin_port = htons(PORT);
+
+    // Bind the socket to the specified port
+    if (bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) == SOCKET_ERROR) {
+        printf("Bind failed\n");
+        closesocket(sockfd);
+        WSACleanup();
+        return 1;
+    }
+
+    printf("Server listening on port %d\n", PORT);
+
+
+        client_len = sizeof(client_addr);
+
+
+
+
+
+
+
     run();
 }
 
@@ -128,9 +176,24 @@ const char* mainMenu() {
         printf("\nLAST Command: %s", lastCommand);
         printf("\nMessage: %s", message);
         printf("\nINPUT >");
-        fgets(input, sizeof(input), stdin);
-        input[strcspn(input, "\n")] = 0;
+        recv_len = recvfrom(sockfd, input, BUFFER_SIZE, 0, (struct sockaddr *)&client_addr, &client_len);
+        if (recv_len == SOCKET_ERROR) {
+            printf("Receive failed\n");
+        }
+
+        // Null-terminate the received data
+        input[recv_len] = '\0';
+
+
+
+
+
+
+
+
+
         sscanf(input, "%s %s", command, filename);
+
 
         if (strcmp(command, "LD") == 0) {
             resetColumns(columns);
@@ -139,15 +202,21 @@ const char* mainMenu() {
             ? strcpy(message, load("default.txt", &deck))
             : strcpy(message, load(filename, &deck));
             if(strcmp(message, "OK") == 0)
+                sprintf(response, "%s", message);
+                 send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
                 arrangeEvenly(columns, deck);
         } else if (strcmp(command, "SW") == 0) {
             if (!loaded) {
                 strcpy(message, "Error: no deck is loaded");
+                sprintf(response, "%s", message);
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             } else {
                 resetColumns(columns);
                 resetFoundations(foundations);
                 arrangeVisible(columns, deck);
                 strcpy(message, "OK");
+                sprintf(response, "%s", message);
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             }
         }
 
@@ -162,9 +231,12 @@ const char* mainMenu() {
                 // Now call splitDeck with either the provided or default index
                 strcpy(message, splitDeck(&deck, splitIndex));
                 arrangeEvenly(columns, deck);
-                // Optionally, directly print the deck to visualize the changes
+                sprintf(response, "%s", "OK\n");
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             } else {
                 printf("Load a deck first.\n");
+                sprintf(response, "%s", "load a deck first.\n");
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             }
         }
 
@@ -173,6 +245,8 @@ const char* mainMenu() {
             resetFoundations(foundations);
             shuffle(&deck);
             arrangeEvenly(columns, deck);
+            sprintf(response, "%s", "OK\n");
+            send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
         }
 
         else if (strcmp(input, "SD") == 0) {
@@ -181,6 +255,8 @@ const char* mainMenu() {
             : strcpy(message, connectToFile(filename));
             if(strcmp(message,"OK") == 0){
                 saveE(deck);
+                sprintf(response, "%s", message);
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             }
         }
 
@@ -188,11 +264,17 @@ const char* mainMenu() {
             resetColumns(columns);
             resetFoundations(foundations);
             arrangeP(columns, deck);
+            strcpy(message, "OK");
+            sprintf(response, "%s", message);
+            send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             playMenu();
             continueMainMenu = false;
-            strcpy(message, "OK");
+
+
         } else {
             strcpy(message, "ERROR: Unknown command");
+            sprintf(response, "%s", message);
+            send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
         }
         strcpy(lastCommand, input);
     }
@@ -202,12 +284,19 @@ const char* mainMenu() {
 const char* playMenu() {
     bool inPlayMenu = true;
     while (inPlayMenu) {
+        rewrite();
         printBoard();
         printf("\nLAST Command: %s", lastCommand);
         printf("\nMessage: %s", message);
         printf("\nINPUT >");
-        fgets(input, sizeof(input), stdin);
-        input[strcspn(input, "\n")] = 0;  // Remove newline character
+        recv_len = recvfrom(sockfd, input, BUFFER_SIZE, 0, (struct sockaddr *)&client_addr, &client_len);
+        if (recv_len == SOCKET_ERROR) {
+            printf("Receive failed\n");
+        }
+        input[recv_len] = '\0';
+
+        sscanf(input, "%s", command);
+
         if(strlen(input) == 9) {
             strcpy(sourceCol, strtok(input, ":"));
             strcpy(card, strtok(&input[3], "->"));
@@ -219,8 +308,11 @@ const char* playMenu() {
         }
         printf("Accepted input\n");
 
+
         if (strcmp(input, "Q") == 0) {
             strcpy(message, "OK");
+            sprintf(response, "%s", message);
+            send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             inPlayMenu = false;
         } else {
             printf("Checking input\n");
@@ -228,24 +320,38 @@ const char* playMenu() {
             if(destCol[0] == 'F'){
                 if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1){
                     move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
+                    rewrite();
                     strcpy(message, "OK");
-                    // Move a card to a non-empty foundation
+                    sprintf(response, "%s", message);
+                    send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
+
                 } else if( matchFound(columns[sourceCol[1] - '1'], card)->precedence - foundations[destCol[1] - '1']->precedence == 1 && !isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), foundations[destCol[1] - '1'])){
                     move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
+                    rewrite();
                     strcpy(message, "OK");
+                    sprintf(response, "%s", message);
+                    send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
                 }
                 // Standard move
             } else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))){
                 printf("Different suit\n");
                 move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
+                rewrite();
                 strcpy(message, "OK");
+                sprintf(response, "%s", message);
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
                 // Move K to an empty column
             } else if(card[0] == 'K' && destCol[0] == 'C' && columns[destCol[1] - '1'] == NULL){
                 printf("Moving to empty column\n");
                 move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
+                rewrite();
                 strcpy(message, "OK");
+                sprintf(response, "%s", message);
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             } else{
                 strcpy(message, "Error: not a valid move!");
+                sprintf(response, "%s", message);
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             }
 
             //Unhide the last card of a column if hidden.
@@ -283,10 +389,39 @@ void move(Card** colFrom, Card** colTo, const char cardName[3]){
     a->hidden = false;
 }
 
+void rewrite(){
+
+    FILE* state = fopen("state.txt","w");
+    if (state == NULL) {
+        perror("Error opening file");
+        return;  // Exit function if file opening fails
+    }
+
+    forEach(&writeToFile,columns[0],state);
+
+    forEach(&writeToFile,columns[1],state);
+
+    forEach(&writeToFile,columns[2],state);
+
+    forEach(&writeToFile,columns[3],state);
+
+    forEach(&writeToFile,columns[4],state);
+    forEach(&writeToFile,columns[5],state);
+    forEach(&writeToFile,columns[6],state);
+    forEach(&writeToFile,foundations[0],state);
+    forEach(&writeToFile,foundations[1],state);
+    forEach(&writeToFile,foundations[2],state);
+    forEach(&writeToFile,foundations[3],state);
+    fclose(state);
+
+}
+
 void run(){
     loaded = false;
     while (strcmp(command, "QQ") != 0) {
         //printBoard();
         strcpy(command, mainMenu());
     }
+    closesocket(sockfd);
+    WSACleanup();
 }

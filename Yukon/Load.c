@@ -29,7 +29,7 @@ const char* load(const char* filename, Card** list) {
 
     *list = first;
 
-    // Load all the other cards
+
     while (line++ < 52) {
         fscanf(file, "%s", name);
         Card* next = (Card*)malloc(sizeof(Card));

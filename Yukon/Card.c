@@ -151,8 +151,20 @@ bool isOneRankHigher(Card* a, Card* b){
     return a->precedence - b->precedence == 1;
 }
 
-void forEach(void (*fun)(Card*), Card* card) {
-    fun(card);
-    if (card->next != NULL)
-        forEach(fun, card->next);
+void forEach(void (*fun)(Card*,FILE*), Card* card, FILE* file) {
+    if(card != NULL) {
+        fun(card, file);
+        if (card->next != NULL) {
+            forEach(fun, card->next, file);
+        } else {
+            fputc('\n', file);
+        }
+    }
 }
+
+void writeToFile(Card* first,FILE* writeTo){
+
+    fprintf(writeTo,"%s ",first->name);
+
+}
+//C5:3H->C4

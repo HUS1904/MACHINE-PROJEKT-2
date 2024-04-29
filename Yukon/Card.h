@@ -1,6 +1,7 @@
 #ifndef MACHINE_PROJEKT_2_CARD_H
 #define MACHINE_PROJEKT_2_CARD_H
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef struct cardType Card;
 
@@ -50,6 +51,8 @@ bool isOneRankLower(Card* a, Card* b);
 bool isOneRankHigher(Card* a, Card* b);
 
 // For each function
-void forEach(void (*fun)(Card*), Card* card);
+void forEach(void (*fun)(Card*,FILE*), Card* card,FILE* file);
+
+void writeToFile(Card* first,FILE* writeTo);
 
 #endif
