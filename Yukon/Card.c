@@ -164,7 +164,12 @@ void forEach(void (*fun)(Card*,FILE*), Card* card, FILE* file) {
 
 void writeToFile(Card* first,FILE* writeTo){
 
-    fprintf(writeTo,"%s ",first->name);
+    if(first->hidden != true) {
+
+        fprintf(writeTo, "%s ", first->name);
+    } else{
+        fprintf(writeTo, "%s ", ".");
+    }
 
 }
 //C5:3H->C4
