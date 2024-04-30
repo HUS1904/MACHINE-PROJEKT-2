@@ -132,8 +132,6 @@ public class Main extends Application {
             vboxes.add(vbox);
         });
 
-
-
         vboxes.forEach(x-> {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(100.0 / 13.0);
@@ -181,6 +179,8 @@ public class Main extends Application {
             image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/" + name + ".png")));
 
             ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(HEIGHT);
+            imageView.setFitWidth(WIDTH);
 
             getChildren().addAll(imageView);
         }
