@@ -1,0 +1,44 @@
+#root {
+    -fx-background-image: url('c.png');
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-font-family: 'Poppins';
+}
+
+#interactionPanel {
+    -fx-padding: 20px 0px;  /* Ensures padding at the top and bottom */
+}
+
+#status {
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 20px 0px 0px 0px;  /* Changed from -fx-margin-top to -fx-padding for correct CSS property */
+}
+
+#button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #212121;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 5px 10px;  /* Added 'px' to make it consistent */
+    -fx-cursor: hand;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+#button:hover {
+    -fx-background-color: #4cae4c;
+}
+
+#text {
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #212121;
+    -fx-padding: 5px 10px;  /* Added 'px' to make it consistent */
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ffffff;
+}
