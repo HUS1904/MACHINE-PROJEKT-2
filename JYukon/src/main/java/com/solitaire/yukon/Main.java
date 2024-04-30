@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -125,7 +126,13 @@ public class Main extends Application {
                 card.setTranslateY(50);
                 vbox.getChildren().add(card);
             });
-            grid.add(vbox, colsAndFound.indexOf(x),0);
+            vboxes.add(vbox);
+        });
+        vboxes.forEach(x-> {
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100.0 / 13.0);
+            grid.getColumnConstraints().add(column);
+            grid.addColumn(vboxes.indexOf(x), x);
         });
         // Add the GridPane and other nodes back to the root VBox
         root.getChildren().addAll(grid, button, text, status);
