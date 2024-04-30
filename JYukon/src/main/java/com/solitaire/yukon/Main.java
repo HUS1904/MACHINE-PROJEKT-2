@@ -120,7 +120,8 @@ public class Main extends Application {
         colsAndFound.forEach(x -> {
             VBox vbox = new VBox();
             x.forEach(y -> {
-                Card card = new Card("turned" /*To be replaced with "y" when additional assets are added*/);
+                // Card card = y.equals(".") ? new Card("turned") : new Card(y);
+                Card card = new Card("turned");
                 card.setTranslateY(50);
                 vbox.getChildren().add(card);
             });
