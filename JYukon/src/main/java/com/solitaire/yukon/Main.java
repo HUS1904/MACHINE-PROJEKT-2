@@ -39,6 +39,7 @@ public class Main extends Application {
     static ArrayList<ArrayList<String>> colsAndFound = new ArrayList<>();
     static GridPane cardGround = new GridPane();
     static Button button;
+    static  VBox interactionPanel;
     @Override
     public void start(Stage stage) throws IOException {
         serverAddress = InetAddress.getByName("127.0.0.1"); // Change this to the actual server address
@@ -48,8 +49,8 @@ public class Main extends Application {
         socket = new DatagramSocket();
 
         root = new VBox();
-        root.setSpacing(0);
-        root.setPadding(new Insets(20, 20, 20, 20));
+        root.setSpacing(500);
+        root.setPadding(new Insets(10, 10, 10, 10));
 
         button = new Button("send");
         button.setPadding(new Insets(10, 10, 10, 10));
@@ -60,7 +61,9 @@ public class Main extends Application {
         text = new TextField();
         text.setPromptText("Enter Command");
 
-        root.getChildren().addAll(button,text,status);
+        interactionPanel = new VBox(button,text,status);
+
+        root.getChildren().addAll(interactionPanel);
 
         Scene scene = new Scene(root);
         stage.setTitle("Hello!");
@@ -116,7 +119,7 @@ public class Main extends Application {
         grid.setHgap(30); // Set horizontal gap between columns
         grid.setVgap(20); // Set vertical gap between rows
         ArrayList<VBox> vboxes = new ArrayList<>();
-        double verticalOffset = 1000.0 / 13.0;
+
 
         colsAndFound.forEach(x -> {
             VBox vbox = new VBox();
@@ -128,14 +131,40 @@ public class Main extends Application {
             });
             vboxes.add(vbox);
         });
+
+
+
         vboxes.forEach(x-> {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(100.0 / 13.0);
             grid.getColumnConstraints().add(column);
             grid.addColumn(vboxes.indexOf(x), x);
         });
+
+        VBox foundations = new VBox();
+        foundations.setSpacing(50);
+        foundations.setPadding(new Insets(0, 0, 0, 200));
+        for(int i = 7; i< 11;i++){
+            int counter = 0;
+            if(! (i > colsAndFound.size() - 1)){
+                String name = colsAndFound.get(i).getLast();
+                Card card = new Card(name);
+                foundations.getChildren().add(card);
+                card.setTranslateY(50 +(counter*0.25*50));
+
+            } else{
+                Card card = new Card();
+                foundations.getChildren().add(card);
+
+                card.setTranslateY(50 +(counter*0.25*50));
+
+            }
+
+        }
+
+        grid.add(foundations,7,0);
         // Add the GridPane and other nodes back to the root VBox
-        root.getChildren().addAll(grid, button, text, status);
+        root.getChildren().addAll(grid,interactionPanel);
     }
     public static void main(String[] args) {
         launch();
@@ -148,13 +177,20 @@ public class Main extends Application {
 
         public Card(String name) {
             setPrefSize(WIDTH, HEIGHT);
-            Rectangle cardShape = new Rectangle(WIDTH, HEIGHT, Color.WHITE);
-            cardShape.setStroke(Color.BLACK);
+
             image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/" + name + ".png")));
 
             ImageView imageView = new ImageView(image);
 
-            getChildren().addAll(cardShape,imageView);
+            getChildren().addAll(imageView);
+        }
+
+        public Card(){
+            setPrefSize(WIDTH, HEIGHT);
+            Rectangle rect = new Rectangle(WIDTH, HEIGHT);
+            rect.setFill(Color.WHITE);
+            rect.setStroke(Color.BLACK);
+            getChildren().add(rect);
         }
     }
 }

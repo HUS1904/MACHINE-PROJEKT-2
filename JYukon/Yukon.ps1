@@ -1,2 +1,2 @@
-Start-Process -FilePath ".\target\Yukon.exe"
+Start-Process -FilePath ".\Yukon.exe"
 mvn javafx:run
