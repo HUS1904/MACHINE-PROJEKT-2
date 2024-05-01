@@ -1,11 +1,11 @@
 E
 . 8C AD 7D KD 6H 
-. . 2D 8D AH 7H QH 
+. . 2D 8D 
 . . . 9D 2H 8H KH 4S 
-. . . . 3H 9H AS 5S 8S 
-. . . . . TH 2S 6S 9S JS 
-. . . . . . 3S 7S TS QS KS 
+. . . . 3H 9H AS 5S 8S 7H 
+. . . . . TH 2S 6S 9S 
+. . . . . . 3S 7S TS QS KS QH JS 
 AC 
-E
+AH 
 E
 E

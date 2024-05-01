@@ -157,24 +157,40 @@ public class Main extends Application {
         grid2.setHgap(30); // Set horizontal gap between columns
         grid2.setVgap(20); // Set vertical gap between rows
 
+        VBox foundations = new VBox();
+        foundations.setSpacing(50);
+        foundations.setPadding(new Insets(0, 0, 0, 200));
+
         ArrayList<VBox> vboxes = new ArrayList<>();
 
         AtomicInteger colNumber = new AtomicInteger(1);
+        System.out.println("____colsAndFound____");
+        colsAndFound.forEach(System.out::println);
         colsAndFound.forEach(x -> {
-            VBox vbox = new VBox();
-            Label label = new Label("COLUMN " + colNumber.getAndIncrement());
-            label.setId("headers");
-            vbox.setMargin(label, new Insets(40, 0, -40, 5));
-            vbox.getChildren().add(label);
+            if(colsAndFound.indexOf(x) < 7) {
+                VBox vbox = new VBox();
+                Label label = new Label("COLUMN " + colNumber.getAndIncrement());
+                label.setId("headers");
+                vbox.setMargin(label, new Insets(40, 0, -40, 5));
+                vbox.getChildren().add(label);
 
-            x.forEach(y -> {
-                Card card = y.equals(".") ? new Card("turned") : new Card(y);
+                x.forEach(y -> {
+                    Card card = y.equals(".") ? new Card("turned") : new Card(y);
+                    card.setTranslateY(50);
+                    vbox.getChildren().add(card);
+
+                });
+                vboxes.add(vbox);
+            } else {
+                Card card = new Card(x.getLast());
+                foundations.getChildren().add(card);
                 card.setTranslateY(50);
-                vbox.getChildren().add(card);
-
-            });
-            vboxes.add(vbox);
+            }
         });
+        while (vboxes.size() > 7) {
+            vboxes.removeLast();
+        }
+        System.out.println("vboxes: " + vboxes.size());
 
         vboxes.forEach(x-> {
             ColumnConstraints column = new ColumnConstraints();
@@ -182,27 +198,6 @@ public class Main extends Application {
             grid2.getColumnConstraints().add(column);
             grid2.addColumn(vboxes.indexOf(x), x);
         });
-
-        VBox foundations = new VBox();
-        foundations.setSpacing(50);
-        foundations.setPadding(new Insets(0, 0, 0, 200));
-        for(int i = 7; i< 11;i++){
-            int counter = 0;
-            if(! (i > colsAndFound.size() - 1)){
-                String name = colsAndFound.get(i).getLast();
-                Card card = new Card(name);
-                foundations.getChildren().add(card);
-                card.setTranslateY(50 +(counter*0.25*50));
-
-            } else{
-                Card card = new Card(i-6);
-                foundations.getChildren().add(card);
-
-                card.setTranslateY(50 +(counter*0.25*50));
-
-            }
-
-        }
 
         grid2.add(foundations,7,0);
         // Add the GridPane and other nodes back to the root VBox
@@ -229,15 +224,5 @@ public class Main extends Application {
 
           getChildren().addAll(imageView);
       }
-
-        public Card(int i){
-            setPrefSize(WIDTH, HEIGHT);
-            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/F" + String.valueOf(i) + ".png")));
-            ImageView imageView = new ImageView(image);
-            imageView.setFitHeight(HEIGHT);
-            imageView.setFitWidth(WIDTH);
-
-            getChildren().addAll(imageView);
-        }
     }
 }
