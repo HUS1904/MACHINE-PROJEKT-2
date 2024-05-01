@@ -35,6 +35,12 @@ const char* load(const char* filename, Card** list) {
         Card* next = (Card*)malloc(sizeof(Card));
         *next = buildCard(name);
 
+        if(matchFound(first,next->name) != NULL){
+            static char error[100];
+            sprintf(error, "card %s from file %s is a duplicate", next -> name,filename);
+            return error;
+        }
+
         if(next->precedence == 0) {
             static char error[100];
             sprintf(error, "Error: broken card %s at line %d.", next->name, line);

@@ -110,8 +110,8 @@ public class Main extends Application {
             if (response.equals("OK")) {
                 status.setText("MESSAGE: " + response);
 
-                if(message.equals("LD")){
-                    status.setText("DECK LOADED");
+                if(message.startsWith("LD")){
+                    status.setText(response);
                 } else {
                     String relativePath = "state.txt"; // Example relative path
                     File file = new File(relativePath);

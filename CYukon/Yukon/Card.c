@@ -134,9 +134,10 @@ Card* matchFound(Card* col, const char cardName[3]){
         if (strcmp(current->name, cardName) == 0) {
             return current;
         } else {
-            current = current->next;  // Move to the next card
+            current = current->next;// Move to the next card
         }
     }
+    return NULL;
 }
 
 bool isDifferentSuit(Card* a, Card* b){
@@ -159,6 +160,9 @@ void forEach(void (*fun)(Card*,FILE*), Card* card, FILE* file) {
         } else {
             fputc('\n', file);
         }
+    } else {
+        fputc('E', file);
+        fputc('\n', file);
     }
 }
 

@@ -201,10 +201,15 @@ const char* mainMenu() {
             strcmp(filename, "") == 0
             ? strcpy(message, load("default.txt", &deck))
             : strcpy(message, load(filename, &deck));
-            if(strcmp(message, "OK") == 0)
+            if(strcmp(message, "OK") == 0){
                 sprintf(response, "%s", message);
-                 send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
                 arrangeEvenly(columns, deck);
+            } else {
+                sprintf(response, "%s", message);
+            }
+
+                 send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
+              ;
         } else if (strcmp(command, "SW") == 0) {
             if (!loaded) {
                 strcpy(message, "Error: no deck is loaded");
