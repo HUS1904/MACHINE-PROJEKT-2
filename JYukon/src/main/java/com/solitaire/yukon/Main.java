@@ -68,17 +68,14 @@ public class Main extends Application {
         text.setId("text");
         text.setPromptText("ENTER COMMAND");
 
-
-
-
         InteractionPanel = new HBox();
-        InteractionPanel.setAlignment(Pos.CENTER);  // Ensure HBox is centered horizontally
+        InteractionPanel.setAlignment(Pos.CENTER);
         InteractionPanel.getChildren().addAll(button, text);
         InteractionPanel.setMargin(button, new Insets(0, 10, 0, 0));
         InteractionPanel.setId("interactionPanel");
 
         mainInteractionPanel = new VBox();
-        mainInteractionPanel.setAlignment(Pos.CENTER);  // Ensure VBox is centered horizontally
+        mainInteractionPanel.setAlignment(Pos.CENTER);
         mainInteractionPanel.getChildren().addAll(status, InteractionPanel);
         mainInteractionPanel.setId("mainInteractionPanel");
 
@@ -89,8 +86,8 @@ public class Main extends Application {
         logoView.setId("logo");
 
         home = new VBox();
-        home.setAlignment(Pos.CENTER);  // This aligns all children within 'home' to be centered horizontally
-        home.setSpacing(50); // Adjust the spacing value to your preference
+        home.setAlignment(Pos.CENTER);
+        home.setSpacing(50);
         home.setId("home");
         home.getChildren().addAll(logoView, mainInteractionPanel);
 
