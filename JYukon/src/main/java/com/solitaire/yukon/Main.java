@@ -2,6 +2,7 @@ package com.solitaire.yukon;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -51,6 +52,7 @@ public class Main extends Application {
 
         root = new VBox();
         root.setId("root");
+        root.setAlignment(Pos.CENTER);
         root.setSpacing(500);
         root.setPadding(new Insets(10, 10, 10, 10));
 
@@ -66,27 +68,42 @@ public class Main extends Application {
         text.setId("text");
         text.setPromptText("ENTER COMMAND");
 
-
-
-
-        InteractionPanel = new HBox(button, text);
+        InteractionPanel = new HBox();
+        InteractionPanel.setAlignment(Pos.CENTER);
+        InteractionPanel.getChildren().addAll(button, text);
         InteractionPanel.setMargin(button, new Insets(0, 10, 0, 0));
         InteractionPanel.setId("interactionPanel");
-        mainInteractionPanel = new VBox(status, InteractionPanel);
+
+        mainInteractionPanel = new VBox();
+        mainInteractionPanel.setAlignment(Pos.CENTER);
+        mainInteractionPanel.getChildren().addAll(status, InteractionPanel);
         mainInteractionPanel.setId("mainInteractionPanel");
 
         logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/logo.png")));
         ImageView logoView = new ImageView(logo);
+        logoView.setFitHeight(150);
+        logoView.setFitWidth(150);
         logoView.setId("logo");
 
         home = new VBox();
+        home.setAlignment(Pos.CENTER);
+        home.setSpacing(50);
         home.setId("home");
         home.getChildren().addAll(logoView, mainInteractionPanel);
+
+        Region spacerTop = new Region();
+        Region spacerBottom = new Region();
+        VBox.setVgrow(spacerTop, Priority.ALWAYS);
+        VBox.setVgrow(spacerBottom, Priority.ALWAYS);
 
         root.getChildren().addAll(home);
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+
+        Image appIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/appIcon.png")));
+        stage.getIcons().add(appIcon);
+
         stage.setTitle("YUKON");
         stage.setScene(scene);
         stage.setMaximized(true);
