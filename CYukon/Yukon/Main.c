@@ -29,6 +29,7 @@ char card[10];
 char sourceCol[10];
 char destCol[10];
 bool loaded;
+bool winCondition;
 
 Card* columns[7];
 Card* foundations[4];
@@ -41,6 +42,7 @@ const char* playMenu();
 void rewrite();
 void move(Card** colFrom, Card** colTo,const char cardName[3]);
 void run();
+void decideWin();
 
 int main(){
     if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0) {
@@ -70,7 +72,7 @@ int main(){
     printf("Server listening on port %d\n", PORT);
 
 
-        client_len = sizeof(client_addr);
+    client_len = sizeof(client_addr);
 
 
 
@@ -92,15 +94,15 @@ void printBoard(){
            maybe(get(columns[5], 0)),
            maybe(get(columns[6], 0)),
            maybeF(foundations[0])
-           );
+    );
     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
-            maybe(get(columns[0], 1)),
-            maybe(get(columns[1], 1)),
-            maybe(get(columns[2], 1)),
-            maybe(get(columns[3], 1)),
-            maybe(get(columns[4], 1)),
-            maybe(get(columns[5], 1)),
-            maybe(get(columns[6], 1))
+           maybe(get(columns[0], 1)),
+           maybe(get(columns[1], 1)),
+           maybe(get(columns[2], 1)),
+           maybe(get(columns[3], 1)),
+           maybe(get(columns[4], 1)),
+           maybe(get(columns[5], 1)),
+           maybe(get(columns[6], 1))
     );
     printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t\t%s\tF2\n",
            maybe(get(columns[0], 2)),
@@ -171,28 +173,30 @@ void printBoard(){
 
 const char* mainMenu() {
     bool continueMainMenu = true;
+    int splitIndex;
     while (continueMainMenu && strcmp(command, "QQ") != 0) {
         printBoard();
         printf("\nLAST Command: %s", lastCommand);
         printf("\nMessage: %s", message);
         printf("\nINPUT >");
-        recv_len = recvfrom(sockfd, input, BUFFER_SIZE, 0, (struct sockaddr *)&client_addr, &client_len);
-        if (recv_len == SOCKET_ERROR) {
-            printf("Receive failed\n");
+
+        if(!winCondition) {
+            recv_len = recvfrom(sockfd, input, BUFFER_SIZE, 0, (struct sockaddr *) &client_addr, &client_len);
+            if (recv_len == SOCKET_ERROR) {
+                printf("Receive failed\n");
+            }
+
+            sscanf(input, "%s", command);
+            // Null-terminate the received data
+            input[recv_len] = '\0';
+            sscanf(input, "%s %s", command, filename);
+            printf(input);
+            printf("\n");
+        } else{
+
         }
 
-        // Null-terminate the received data
-        input[recv_len] = '\0';
 
-
-
-
-
-
-
-
-
-        sscanf(input, "%s %s", command, filename);
 
 
         if (strcmp(command, "LD") == 0) {
@@ -208,28 +212,31 @@ const char* mainMenu() {
                 sprintf(response, "%s", message);
             }
 
-                 send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
-              ;
+
+
         } else if (strcmp(command, "SW") == 0) {
             if (!loaded) {
                 strcpy(message, "Error: no deck is loaded");
                 sprintf(response, "%s", message);
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
+
             } else {
                 resetColumns(columns);
                 resetFoundations(foundations);
                 arrangeVisible(columns, deck);
                 strcpy(message, "OK");
                 sprintf(response, "%s", message);
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
+                rewrite();
+
             }
         }
 
-        else if (strcmp(input, "SI") == 0) {
+        else if (strcmp(command, "SI") == 0) {
             resetColumns(columns);
             resetFoundations(foundations);
             if (deck) { // Ensure deck is loaded before attempting to split
-                int splitIndex = atoi(filename);
+
+                splitIndex = atoi(filename);
+                printf("%d",splitIndex);
                 if(splitIndex >= 52 || splitIndex < 1) {
                     splitIndex = rand() % 50 + 1;
                 }
@@ -237,50 +244,52 @@ const char* mainMenu() {
                 strcpy(message, splitDeck(&deck, splitIndex));
                 arrangeEvenly(columns, deck);
                 sprintf(response, "%s", "OK\n");
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             } else {
                 printf("Load a deck first.\n");
                 sprintf(response, "%s", "load a deck first.\n");
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             }
         }
 
-        else if (strcmp(input, "SR") == 0) {
+        else if (strcmp(command, "SR") == 0) {
             resetColumns(columns);
             resetFoundations(foundations);
             shuffle(&deck);
             arrangeEvenly(columns, deck);
             sprintf(response, "%s", "OK\n");
-            send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
         }
 
-        else if (strcmp(input, "SD") == 0) {
+        else if (strcmp(command, "SD") == 0) {
             strcmp(filename, "") == 0
             ? strcpy(message, connectToFile("cards.txt"))
             : strcpy(message, connectToFile(filename));
             if(strcmp(message,"OK") == 0){
                 saveE(deck);
                 sprintf(response, "%s", message);
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             }
         }
 
         else if (strcmp(command, "P") == 0) {
-            resetColumns(columns);
-            resetFoundations(foundations);
-            arrangeP(columns, deck);
-            strcpy(message, "OK");
-            sprintf(response, "%s", message);
-            send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
-            playMenu();
-            continueMainMenu = false;
+            if(loaded) {
+                resetColumns(columns);
+                resetFoundations(foundations);
+                arrangeP(columns, deck);
+                strcpy(message, "OK");
+                sprintf(response, "%s", message);
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *) &client_addr, client_len);
+                playMenu();
+                continueMainMenu = false;
+            } else{
+                strcpy(message, "deck not loaded");
+                sprintf(response, "%s", message);
+            }
 
 
         } else {
             strcpy(message, "ERROR: Unknown command");
             sprintf(response, "%s", message);
-            send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
+
         }
+        send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
         strcpy(lastCommand, input);
     }
     return input;
@@ -294,13 +303,18 @@ const char* playMenu() {
         printf("\nLAST Command: %s", lastCommand);
         printf("\nMessage: %s", message);
         printf("\nINPUT >");
-        recv_len = recvfrom(sockfd, input, BUFFER_SIZE, 0, (struct sockaddr *)&client_addr, &client_len);
-        if (recv_len == SOCKET_ERROR) {
-            printf("Receive failed\n");
-        }
-        input[recv_len] = '\0';
 
-        sscanf(input, "%s", command);
+        if(!winCondition) {
+            recv_len = recvfrom(sockfd, input, BUFFER_SIZE, 0, (struct sockaddr *) &client_addr, &client_len);
+            if (recv_len == SOCKET_ERROR) {
+                printf("Receive failed\n");
+            }
+            input[recv_len] = '\0';
+
+            sscanf(input, "%s", command);
+        } else{
+            sscanf(input, "%s","Q");
+        }
 
         if(strlen(input) == 9) {
             strcpy(sourceCol, strtok(input, ":"));
@@ -315,28 +329,37 @@ const char* playMenu() {
 
 
         if (strcmp(input, "Q") == 0) {
+            strcpy(filename,"");
             strcpy(message, "OK");
             sprintf(response, "%s", message);
-            send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             inPlayMenu = false;
         } else {
             printf("Checking input\n");
             // Move a card to an empty foundation
-            if(destCol[0] == 'F'){
-                if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1){
+            if(destCol[0] == 'F') {
+                if (foundations[destCol[1] - '1'] == NULL &&
+                    matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1) {
                     move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
                     rewrite();
                     strcpy(message, "OK");
                     sprintf(response, "%s", message);
-                    send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
 
-                } else if( matchFound(columns[sourceCol[1] - '1'], card)->precedence - foundations[destCol[1] - '1']->precedence == 1 && !isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), foundations[destCol[1] - '1'])){
+                }
+
+
+            }else if (strcmp(destCol,sourceCol)==0){
+
+                    strcpy(message, "Not a valid move");
+                    sprintf(response, "%s", message);
+
+
+
+                }else if( matchFound(columns[sourceCol[1] - '1'], card)->precedence - foundations[destCol[1] - '1']->precedence == 1 && !isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), foundations[destCol[1] - '1'])){
                     move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
                     rewrite();
                     strcpy(message, "OK");
                     sprintf(response, "%s", message);
-                    send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
-                }
+
                 // Standard move
             } else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))){
                 printf("Different suit\n");
@@ -344,7 +367,6 @@ const char* playMenu() {
                 rewrite();
                 strcpy(message, "OK");
                 sprintf(response, "%s", message);
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
                 // Move K to an empty column
             } else if(card[0] == 'K' && destCol[0] == 'C' && columns[destCol[1] - '1'] == NULL){
                 printf("Moving to empty column\n");
@@ -352,13 +374,18 @@ const char* playMenu() {
                 rewrite();
                 strcpy(message, "OK");
                 sprintf(response, "%s", message);
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             } else{
                 strcpy(message, "Error: not a valid move!");
                 sprintf(response, "%s", message);
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
             }
+            decideWin();
 
+            if(winCondition) {
+                strcpy(response,"YOU WON!");
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *) &client_addr, client_len);
+            } else{
+                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *) &client_addr, client_len);
+            }
             //Unhide the last card of a column if hidden.
             if((last(columns[sourceCol[1] - '1']) != NULL)) {
                 if (last(columns[sourceCol[1] - '1'])->hidden) {
@@ -418,6 +445,20 @@ void rewrite(){
     forEach(&writeToFile,foundations[2],state);
     forEach(&writeToFile,foundations[3],state);
     fclose(state);
+
+}
+
+void decideWin(){
+    for(int i = 0; i < 7;i++){
+        if(columns[i] == NULL){
+            if(i == 6){
+                winCondition = true;
+            }
+        } else{
+            winCondition = false;
+            break;
+        }
+    }
 
 }
 

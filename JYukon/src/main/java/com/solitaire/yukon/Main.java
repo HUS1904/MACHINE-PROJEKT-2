@@ -1,6 +1,7 @@
 package com.solitaire.yukon;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -42,6 +43,7 @@ public class Main extends Application {
     static Image logo;
     static VBox mainInteractionPanel;
     static HBox InteractionPanel;
+    static  ImageView logoView;
     @Override
     public void start(Stage stage) throws IOException {
         serverAddress = InetAddress.getByName("127.0.0.1"); // Change this to the actual server address
@@ -80,7 +82,7 @@ public class Main extends Application {
         mainInteractionPanel.setId("mainInteractionPanel");
 
         logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/logo.png")));
-        ImageView logoView = new ImageView(logo);
+        logoView = new ImageView(logo);
         logoView.setFitHeight(150);
         logoView.setFitWidth(150);
         logoView.setId("logo");
@@ -129,7 +131,16 @@ public class Main extends Application {
 
                 if(message.startsWith("LD")){
                     status.setText(response);
-                } else {
+                } else if(message.equals("Q")){
+                    root.getChildren().clear();
+                    root.setSpacing(50);
+                    root.getChildren().addAll(logoView,mainInteractionPanel);
+                } else if (message.equals("QQ")){
+                    Platform.exit();
+                }
+
+                else {
+                    root.setSpacing(500);
                     String relativePath = "state.txt"; // Example relative path
                     File file = new File(relativePath);
 
