@@ -31,26 +31,42 @@ const char* load(const char* filename, Card** list) {
 
 
     while (line++ < 52) {
-        fscanf(file, "%s", name);
-        Card* next = (Card*)malloc(sizeof(Card));
-        *next = buildCard(name);
 
-        if(matchFound(first,next->name) != NULL){
-            static char error[100];
-            sprintf(error, "card %s from file %s is a duplicate", next -> name,filename);
-            return error;
-        }
+        if (fscanf(file, "%s", name) == 0) {
 
-        if(next->precedence == 0) {
+            Card *next = (Card *) malloc(sizeof(Card));
+            *next = buildCard(name);
+
+            if (matchFound(first, next->name) != NULL) {
+                static char error[100];
+                sprintf(error, "card %s from file %s is a duplicate", next->name, filename);
+                return error;
+            }
+
+            if (next->precedence == 0) {
+                static char error[100];
+                sprintf(error, "Error: broken card %s at line %d.", next->name, line);
+                fclose(file);
+                return error;
+            }
+
+
+            linkCards(first, next); // Link each pair of cards together
+            first = next; // Redefine first ahead of next iteration
+
+        } else{
             static char error[100];
-            sprintf(error, "Error: broken card %s at line %d.", next->name, line);
+            sprintf(error, "%s","error file does not have 52 cards");
             fclose(file);
             return error;
         }
-
-        linkCards(first, next); // Link each pair of cards together
-        first = next; // Redefine first ahead of next iteration
     }
+
+
+
+
+
+
 
     fclose(file);
     loaded = true;
