@@ -286,6 +286,7 @@ const char* mainMenu() {
         }
         send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *)&client_addr, client_len);
         strcpy(lastCommand, input);
+        strcpy(filename,"");
     }
     return input;
 }
@@ -352,7 +353,7 @@ const char* playMenu() {
                     strcpy(message, "OK");
                     sprintf(response, "%s", message);
                 }// Standard move
-                }else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))) {
+                }else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(foundations[destCol[1] - '1']))) {
              printf("Different suit\n");
 
 

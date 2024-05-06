@@ -32,7 +32,7 @@ const char* load(const char* filename, Card** list) {
 
     while (line++ < 52) {
 
-        if (fscanf(file, "%s", name) == 0) {
+        if (fscanf(file, "%s", name) != -1) {
 
             Card *next = (Card *) malloc(sizeof(Card));
             *next = buildCard(name);
