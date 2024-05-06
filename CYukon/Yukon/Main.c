@@ -339,6 +339,7 @@ const char* playMenu() {
 
         if(strcmp(destCol,source) != 0){
 
+
             // Move a card to an empty foundation
          if(destCol[0] == 'F'){
                 if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1) {
@@ -353,7 +354,7 @@ const char* playMenu() {
                     strcpy(message, "OK");
                     sprintf(response, "%s", message);
                 }// Standard move
-                }else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(foundations[destCol[1] - '1']))) {
+                }else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))) {
              printf("Different suit\n");
 
 
