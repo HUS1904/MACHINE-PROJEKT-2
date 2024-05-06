@@ -222,6 +222,7 @@ const char* mainMenu() {
                 resetColumns(columns);
                 resetFoundations(foundations);
                 arrangeVisible(columns, deck);
+                rewrite();
                 strcpy(message, "OK");
                 sprintf(response, "%s", message);
 
@@ -241,6 +242,7 @@ const char* mainMenu() {
                 // Now call splitDeck with either the provided or default index
                 strcpy(message, splitDeck(&deck, splitIndex));
                 arrangeEvenly(columns, deck);
+                strcpy(filename,"");
                 sprintf(response, "%s", "OK\n");
             } else {
                 printf("Load a deck first.\n");
@@ -326,7 +328,6 @@ const char* playMenu() {
         sourcearr[2] = '\0';
         const char* source = sourcearr;
 
-        printf(source);
 
         if (strcmp(input, "Q") == 0) {
             strcpy(message, "OK");
@@ -336,7 +337,7 @@ const char* playMenu() {
             printf("Checking input\n");
 
         if(strcmp(destCol,source) != 0){
-            printf("1");
+
             // Move a card to an empty foundation
          if(destCol[0] == 'F'){
                 if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1) {
@@ -351,11 +352,21 @@ const char* playMenu() {
                     strcpy(message, "OK");
                     sprintf(response, "%s", message);
                 }// Standard move
-                }else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))){
-                printf("Different suit\n");
-                move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
-                rewrite();
-                strcpy(message, "OK");
+                }else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))) {
+             printf("Different suit\n");
+             char from = sourceCol[1];
+             char to = destCol[1];
+
+             int fromcol = (int) from;
+             int tocol = (int) to;
+
+             if (fromcol <= 7 && tocol <= 7) {
+                 move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
+                 rewrite();
+                 strcpy(message, "OK");
+             } else {
+                 strcpy(message, "Invalid column number");
+             }
                 sprintf(response, "%s", message);
                 // Move K to an empty column
             } else if(card[0] == 'K' && destCol[0] == 'C' && columns[destCol[1] - '1'] == NULL){
@@ -365,18 +376,28 @@ const char* playMenu() {
                 strcpy(message, "OK");
                 sprintf(response, "%s", message);
             } else{
-             strcpy(message, "Error: not a valid move!");
+             strcpy(message, "Error: Invalid move");
              sprintf(response, "%s", message);
+
          }
 
             } else{
-            strcpy(message, "Error: same column move");
+            strcpy(message, "Error: Same column move");
             sprintf(response, "%s", message);
         }
+        }
+
+                decideWin();
 
 
+                if(winCondition){
+                    strcpy(message, "You Won");
+                    sprintf(response, "%s", message);
+                    send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *) &client_addr, client_len);
+                } else{
+                    send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *) &client_addr, client_len);
+                }
 
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *) &client_addr, client_len);
 
             //Unhide the last card of a column if hidden.
             if((last(columns[sourceCol[1] - '1']) != NULL)) {
@@ -388,7 +409,7 @@ const char* playMenu() {
         strcpy(lastCommand, input);
 
 }
-}
+
         return input;
     }
 
@@ -397,22 +418,22 @@ void move(Card** colFrom, Card** colTo, const char cardName[3]){
     Card* a = matchFound(*colFrom, cardName);
     Card* b = last(*colTo);
 
-    if(a->previous != NULL) {
-        a->previous->next = NULL;
-    }
-    else {
-        *colFrom = NULL;
-    }
+        if (a->previous != NULL) {
+            a->previous->next = NULL;
+        } else {
+            *colFrom = NULL;
+        }
 
-    if(b != NULL) {
-        a->previous = b;
-        b->next = a;
-    } else {
-        *colTo = a;
-        a->previous = NULL;
-    }
+        if (b != NULL) {
+            a->previous = b;
+            b->next = a;
+        } else {
+            *colTo = a;
+            a->previous = NULL;
+        }
 
-    a->hidden = false;
+        a->hidden = false;
+
 }
 
 void rewrite(){
@@ -443,9 +464,9 @@ void rewrite(){
 }
 
 void decideWin(){
-    for(int i = 0; i < 7;i++){
+    for(int i = 0; i < 8;i++){
         if(columns[i] == NULL){
-            if(i == 6){
+            if(i == 7){
                 winCondition = true;
             }
         } else{

@@ -135,11 +135,7 @@ public class Main extends Application {
                     root.getChildren().clear();
                     root.setSpacing(50);
                     root.getChildren().addAll(logoView,mainInteractionPanel);
-                } else if (message.equals("QQ")){
-                    Platform.exit();
-                }
-
-                else {
+                } else {
                     root.setSpacing(500);
                     String relativePath = "state.txt"; // Example relative path
                     File file = new File(relativePath);
