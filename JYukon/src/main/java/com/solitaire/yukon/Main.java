@@ -1,6 +1,7 @@
 package com.solitaire.yukon;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -42,6 +43,7 @@ public class Main extends Application {
     static Image logo;
     static VBox mainInteractionPanel;
     static HBox InteractionPanel;
+    static  ImageView logoView;
     @Override
     public void start(Stage stage) throws IOException {
         serverAddress = InetAddress.getByName("127.0.0.1"); // Change this to the actual server address
@@ -80,7 +82,7 @@ public class Main extends Application {
         mainInteractionPanel.setId("mainInteractionPanel");
 
         logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/logo.png")));
-        ImageView logoView = new ImageView(logo);
+        logoView = new ImageView(logo);
         logoView.setFitHeight(150);
         logoView.setFitWidth(150);
         logoView.setId("logo");
@@ -129,13 +131,22 @@ public class Main extends Application {
 
                 if(message.startsWith("LD")){
                     status.setText(response);
-                } else {
+                } else if(message.equals("Q")){
+                    root.getChildren().clear();
+                    root.setSpacing(50);
+                    root.getChildren().addAll(logoView,mainInteractionPanel);
+                } else if (message.equals("QQ")){
+                    Platform.exit();
+                }
+
+                else {
+                    root.setSpacing(500);
                     String relativePath = "state.txt"; // Example relative path
                     File file = new File(relativePath);
 
                     colsAndFound = Files.lines(Path.of(file.getPath()))
-                                        .map(x-> new ArrayList<>(Arrays.asList(x.split(" "))))
-                                        .collect(Collectors.toCollection(ArrayList::new));
+                            .map(x-> new ArrayList<>(Arrays.asList(x.split(" "))))
+                            .collect(Collectors.toCollection(ArrayList::new));
 
                     updateView();
                 }
@@ -157,24 +168,40 @@ public class Main extends Application {
         grid2.setHgap(30); // Set horizontal gap between columns
         grid2.setVgap(20); // Set vertical gap between rows
 
+        VBox foundations = new VBox();
+        foundations.setSpacing(50);
+        foundations.setPadding(new Insets(0, 0, 0, 200));
+
         ArrayList<VBox> vboxes = new ArrayList<>();
 
         AtomicInteger colNumber = new AtomicInteger(1);
+        System.out.println("____colsAndFound____");
+        colsAndFound.forEach(System.out::println);
         colsAndFound.forEach(x -> {
-            VBox vbox = new VBox();
-            Label label = new Label("COLUMN " + colNumber.getAndIncrement());
-            label.setId("headers");
-            vbox.setMargin(label, new Insets(40, 0, -40, 5));
-            vbox.getChildren().add(label);
+            if(colsAndFound.indexOf(x) < 7) {
+                VBox vbox = new VBox();
+                Label label = new Label("COLUMN " + colNumber.getAndIncrement());
+                label.setId("headers");
+                vbox.setMargin(label, new Insets(40, 0, -40, 5));
+                vbox.getChildren().add(label);
 
-            x.forEach(y -> {
-                Card card = y.equals(".") ? new Card("turned") : new Card(y);
+                x.forEach(y -> {
+                    Card card = y.equals(".") ? new Card("turned") : new Card(y);
+                    card.setTranslateY(50);
+                    vbox.getChildren().add(card);
+
+                });
+                vboxes.add(vbox);
+            } else {
+                Card card = new Card(x.getLast());
+                foundations.getChildren().add(card);
                 card.setTranslateY(50);
-                vbox.getChildren().add(card);
-
-            });
-            vboxes.add(vbox);
+            }
         });
+        while (vboxes.size() > 7) {
+            vboxes.removeLast();
+        }
+        System.out.println("vboxes: " + vboxes.size());
 
         vboxes.forEach(x-> {
             ColumnConstraints column = new ColumnConstraints();
@@ -182,27 +209,6 @@ public class Main extends Application {
             grid2.getColumnConstraints().add(column);
             grid2.addColumn(vboxes.indexOf(x), x);
         });
-
-        VBox foundations = new VBox();
-        foundations.setSpacing(50);
-        foundations.setPadding(new Insets(0, 0, 0, 200));
-        for(int i = 7; i< 11;i++){
-            int counter = 0;
-            if(! (i > colsAndFound.size() - 1)){
-                String name = colsAndFound.get(i).getLast();
-                Card card = new Card(name);
-                foundations.getChildren().add(card);
-                card.setTranslateY(50 +(counter*0.25*50));
-
-            } else{
-                Card card = new Card(i-6);
-                foundations.getChildren().add(card);
-
-                card.setTranslateY(50 +(counter*0.25*50));
-
-            }
-
-        }
 
         grid2.add(foundations,7,0);
         // Add the GridPane and other nodes back to the root VBox
@@ -213,26 +219,16 @@ public class Main extends Application {
         launch();
     }
 
-  static class Card extends Pane {
+    static class Card extends Pane {
         private static final double WIDTH = 100;
         private static final double HEIGHT = 150;
         Image image ;
 
-      public Card(String name) {
-          setPrefSize(WIDTH, HEIGHT);
-
-          image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/" + name + ".png")));
-
-          ImageView imageView = new ImageView(image);
-          imageView.setFitHeight(HEIGHT);
-          imageView.setFitWidth(WIDTH);
-
-          getChildren().addAll(imageView);
-      }
-
-        public Card(int i){
+        public Card(String name) {
             setPrefSize(WIDTH, HEIGHT);
-            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/F" + String.valueOf(i) + ".png")));
+
+            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/" + name + ".png")));
+
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(HEIGHT);
             imageView.setFitWidth(WIDTH);

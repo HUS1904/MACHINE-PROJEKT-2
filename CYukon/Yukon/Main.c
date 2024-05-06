@@ -190,7 +190,6 @@ const char* mainMenu() {
             // Null-terminate the received data
             input[recv_len] = '\0';
             sscanf(input, "%s %s", command, filename);
-            printf(input);
             printf("\n");
         } else{
             sscanf(input, "%s", "QQ");
@@ -298,17 +297,17 @@ const char* playMenu() {
         printf("\nMessage: %s", message);
         printf("\nINPUT >");
 
-        if(!winCondition) {
+
             recv_len = recvfrom(sockfd, input, BUFFER_SIZE, 0, (struct sockaddr *) &client_addr, &client_len);
             if (recv_len == SOCKET_ERROR) {
                 printf("Receive failed\n");
             }
             input[recv_len] = '\0';
 
-            sscanf(input, "%s", command);
-        } else{
-            sscanf(input, "%s","Q");
-        }
+
+
+
+
 
         if(strlen(input) == 9) {
             strcpy(sourceCol, strtok(input, ":"));
@@ -321,6 +320,13 @@ const char* playMenu() {
         }
         printf("Accepted input\n");
 
+        char sourcearr[3];
+        sourcearr[0] = sourceCol[0];
+        sourcearr[1] = sourceCol[1];
+        sourcearr[2] = '\0';
+        const char* source = sourcearr;
+
+        printf(source);
 
         if (strcmp(input, "Q") == 0) {
             strcpy(message, "OK");
@@ -328,22 +334,24 @@ const char* playMenu() {
             inPlayMenu = false;
         } else {
             printf("Checking input\n");
+
+        if(strcmp(destCol,source) != 0){
+            printf("1");
             // Move a card to an empty foundation
-            if(destCol[0] == 'F'){
-                if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1){
+         if(destCol[0] == 'F'){
+                if(foundations[destCol[1] - '1'] == NULL && matchFound(columns[sourceCol[1] - '1'], card)->precedence >= 1) {
                     move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
                     rewrite();
                     strcpy(message, "OK");
                     sprintf(response, "%s", message);
 
-                } else if( matchFound(columns[sourceCol[1] - '1'], card)->precedence - foundations[destCol[1] - '1']->precedence == 1 && !isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), foundations[destCol[1] - '1'])){
+                }else if( matchFound(columns[sourceCol[1] - '1'], card)->precedence - foundations[destCol[1] - '1']->precedence == 1 && !isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), foundations[destCol[1] - '1'])) {
                     move(&columns[sourceCol[1] - '1'], &foundations[destCol[1] - '1'], card);
                     rewrite();
                     strcpy(message, "OK");
                     sprintf(response, "%s", message);
-                }
-                // Standard move
-            } else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))){
+                }// Standard move
+                }else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))){
                 printf("Different suit\n");
                 move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
                 rewrite();
@@ -357,28 +365,32 @@ const char* playMenu() {
                 strcpy(message, "OK");
                 sprintf(response, "%s", message);
             } else{
-                strcpy(message, "Error: not a valid move!");
-                sprintf(response, "%s", message);
-            }
-            decideWin();
+             strcpy(message, "Error: not a valid move!");
+             sprintf(response, "%s", message);
+         }
 
-            if(winCondition) {
-                strcpy(response,"YOU WON!");
-                send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *) &client_addr, client_len);
             } else{
+            strcpy(message, "Error: same column move");
+            sprintf(response, "%s", message);
+        }
+
+
+
                 send_len = sendto(sockfd, response, strlen(response), 0, (struct sockaddr *) &client_addr, client_len);
-            }
+
             //Unhide the last card of a column if hidden.
             if((last(columns[sourceCol[1] - '1']) != NULL)) {
                 if (last(columns[sourceCol[1] - '1'])->hidden) {
                     last(columns[sourceCol[1] - '1'])->hidden = false;
                 }
             }
-        }
+
         strcpy(lastCommand, input);
-    }
-    return input;
+
 }
+}
+        return input;
+    }
 
 void move(Card** colFrom, Card** colTo, const char cardName[3]){
     printf("Started move\n");
