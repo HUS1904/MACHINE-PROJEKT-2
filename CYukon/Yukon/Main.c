@@ -354,20 +354,13 @@ const char* playMenu() {
                 }// Standard move
                 }else if(isDifferentSuit(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1'])) && isOneRankLower(matchFound(columns[sourceCol[1] - '1'], card), last(columns[destCol[1] - '1']))) {
              printf("Different suit\n");
-             char from = sourceCol[1];
-             char to = destCol[1];
 
-             int fromcol = (int) from;
-             int tocol = (int) to;
 
-             if (fromcol <= 7 && tocol <= 7) {
+
                  move(&columns[sourceCol[1] - '1'], &columns[destCol[1] - '1'], card);
                  rewrite();
                  strcpy(message, "OK");
-             } else {
-                 strcpy(message, "Invalid column number");
-             }
-                sprintf(response, "%s", message);
+                 sprintf(response, "%s", message);
                 // Move K to an empty column
             } else if(card[0] == 'K' && destCol[0] == 'C' && columns[destCol[1] - '1'] == NULL){
                 printf("Moving to empty column\n");
@@ -382,7 +375,7 @@ const char* playMenu() {
          }
 
             } else{
-            strcpy(message, "Error: Same column move");
+            strcpy(message, "Error: Invalid move");
             sprintf(response, "%s", message);
         }
         }
